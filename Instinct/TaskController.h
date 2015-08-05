@@ -15,12 +15,14 @@
 
 +(Task *)getTaskWithName: (NSString *)name;
 
++(void)save;
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName;
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days;
 +(void)updateCompletionFromTodayForTask:(Task *)taskName;
 +(void)updateDaysCompleted: (BOOL) complete forTask:(Task *)taskName;
 +(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName;
 
++(void)removeTask:(Task *)task;
 +(void)deleteTask:(Task *)task;
 
 @end

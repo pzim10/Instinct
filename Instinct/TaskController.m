@@ -8,6 +8,7 @@
 
 #import "TaskController.h"
 #import "Objects.h"
+#import "Stack.h"
 
 @implementation TaskController
 
@@ -34,6 +35,14 @@
 }
 
 // Edit tasks, re-arrange/ organize with new goals, update
++(void)save {
+    [self saveToPersistentStorage];
+}
+
++(void)saveToPersistentStorage {
+    [[Stack sharedInstance].managedObjectContext save:nil];
+}
+
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName{
     taskName.name = newName;
 }
@@ -57,18 +66,23 @@
 }
 
 // Delete tasks
-+(void)deleteTask:(Task *)task{
-    task.name = nil;
-    task.goalName = nil;
-    task.daysCompleted = 0;
-    task.daysToPerfomTask = nil;
-    task.daysUntilComplete = 0;
-    task.consecutiveDaysCompleted = 0;
-    task.complete = nil;
-    task.completedYesterday = nil;
-    
-    [[Objects sharedObject].tasks removeObject:task];
-    
-    [task delete:task];
+//+(void)deleteTask:(Task *)task{
+//    task.name = nil;
+//    task.goalName = nil;
+//    task.daysCompleted = 0;
+//    task.daysToPerfomTask = nil;
+//    task.daysUntilComplete = 0;
+//    task.consecutiveDaysCompleted = 0;
+//    task.complete = nil;
+//    task.completedYesterday = nil;
+//    
+//    [[Objects sharedObject].tasks removeObject:task];
+//    
+//    [task delete:task];
+//}
+
+- (void)removeTask:(Task *)task {
+//    [task.managedObjectContext deleteObject:task];
 }
+
 @end

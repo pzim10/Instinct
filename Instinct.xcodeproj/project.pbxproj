@@ -30,6 +30,10 @@
 		28EB47DB1B6C5B65005F9AD2 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47DA1B6C5B65005F9AD2 /* SummaryViewController.m */; };
 		28EB47DE1B6C5B6C005F9AD2 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47DD1B6C5B6C005F9AD2 /* TaskViewController.m */; };
 		28EB48241B6EDD10005F9AD2 /* Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB48231B6EDD10005F9AD2 /* Objects.m */; };
+		28F96E371B721363009CF483 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E361B721363009CF483 /* Stack.m */; };
+		28F96E3A1B721389009CF483 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E381B721389009CF483 /* Model.xcdatamodeld */; };
+		28F96E3C1B7213A4009CF483 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F96E3B1B7213A4009CF483 /* CoreData.framework */; };
+		28F96E3F1B72D7F0009CF483 /* Goals.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E3E1B72D7F0009CF483 /* Goals.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,12 @@
 		28EB47DD1B6C5B6C005F9AD2 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TaskViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		28EB48221B6EDD10005F9AD2 /* Objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objects.h; sourceTree = "<group>"; };
 		28EB48231B6EDD10005F9AD2 /* Objects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objects.m; sourceTree = "<group>"; };
+		28F96E351B721363009CF483 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		28F96E361B721363009CF483 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
+		28F96E391B721389009CF483 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		28F96E3B1B7213A4009CF483 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		28F96E3D1B72D7F0009CF483 /* Goals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Goals.h; path = ../Goals.h; sourceTree = "<group>"; };
+		28F96E3E1B72D7F0009CF483 /* Goals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Goals.m; path = ../Goals.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F96E3C1B7213A4009CF483 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +140,12 @@
 		28EB47781B6C09C9005F9AD2 /* Instinct */ = {
 			isa = PBXGroup;
 			children = (
+				28F96E3B1B7213A4009CF483 /* CoreData.framework */,
 				28EB477D1B6C09C9005F9AD2 /* AppDelegate.h */,
 				28EB477E1B6C09C9005F9AD2 /* AppDelegate.m */,
+				28F96E351B721363009CF483 /* Stack.h */,
+				28F96E361B721363009CF483 /* Stack.m */,
+				28F96E381B721389009CF483 /* Model.xcdatamodeld */,
 				28EB47B71B6C4664005F9AD2 /* Model */,
 				28EB47B91B6C46C3005F9AD2 /* View */,
 				28EB47BA1B6C46E6005F9AD2 /* Controllers */,
@@ -175,6 +190,8 @@
 				28EB48231B6EDD10005F9AD2 /* Objects.m */,
 				28EB47AB1B6C19BF005F9AD2 /* Settings.h */,
 				28EB47AC1B6C19BF005F9AD2 /* Settings.m */,
+				28F96E3D1B72D7F0009CF483 /* Goals.h */,
+				28F96E3E1B72D7F0009CF483 /* Goals.m */,
 				28EB47BE1B6C5A72005F9AD2 /* Goals.h */,
 				28EB47BF1B6C5A72005F9AD2 /* Goals.m */,
 				28EB47BB1B6C5A54005F9AD2 /* Today.h */,
@@ -339,14 +356,17 @@
 				28EB47DB1B6C5B65005F9AD2 /* SummaryViewController.m in Sources */,
 				28EB48241B6EDD10005F9AD2 /* Objects.m in Sources */,
 				28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */,
+				28F96E371B721363009CF483 /* Stack.m in Sources */,
 				28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */,
 				28EB47D51B6C5B57005F9AD2 /* GoalsViewController.m in Sources */,
 				28EB477C1B6C09C9005F9AD2 /* main.m in Sources */,
 				28EB47D21B6C5B2E005F9AD2 /* TaskController.m in Sources */,
 				28EB47C01B6C5A72005F9AD2 /* Goals.m in Sources */,
+				28F96E3F1B72D7F0009CF483 /* Goals.m in Sources */,
 				28EB47CF1B6C5B23005F9AD2 /* SummaryController.m in Sources */,
 				28EB47DE1B6C5B6C005F9AD2 /* TaskViewController.m in Sources */,
 				28EB47C61B6C5AD7005F9AD2 /* Summary.m in Sources */,
+				28F96E3A1B721389009CF483 /* Model.xcdatamodeld in Sources */,
 				28EB47CC1B6C5B17005F9AD2 /* TodayController.m in Sources */,
 				28EB47AD1B6C19BF005F9AD2 /* Settings.m in Sources */,
 				28EB47AA1B6C18E4005F9AD2 /* SettingsViewController.m in Sources */,
@@ -558,6 +578,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		28F96E381B721389009CF483 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28F96E391B721389009CF483 /* Model.xcdatamodel */,
+			);
+			currentVersion = 28F96E391B721389009CF483 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 28EB476E1B6C09C9005F9AD2 /* Project object */;
 }

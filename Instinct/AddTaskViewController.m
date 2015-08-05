@@ -45,6 +45,10 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     NSMutableArray *switches = [NSMutableArray arrayWithObjects:self.Sunday, self.Monday, self.Tuesday, self.Wednesday, self.Thursday, self.Friday, self.Saturday, nil];
     self.switches = switches;

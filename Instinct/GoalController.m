@@ -7,6 +7,7 @@
 //
 
 #import "GoalController.h"
+#import "Stack.h"
 
 @implementation GoalController
 
@@ -16,6 +17,8 @@
     Goals *newGoal = [Goals new];
     newGoal.name = name;
     newGoal.tasks = [NSArray new];
+    
+    [self save];
     
     [[Objects sharedObject].goals addObject:newGoal];
 }
@@ -49,6 +52,13 @@
 }
 
 // Edit the goal
++(void)save {
+    [self saveToPersistentStorage];
+}
+
++ (void)saveToPersistentStorage {
+    [[Stack sharedInstance].managedObjectContext save:nil];
+}
 
 +(void)addTasktoGoal:(Task *)task forGoal: (Goals *)goal{
     NSMutableArray *newArray = [goal.tasks mutableCopy];
@@ -64,14 +74,18 @@
 
 // Delete the goal
 
-+(void)removeGoal: (Goals *)goal{
-    goal.name = nil;
-    goal.tasks = nil;
-    goal.visualGoal = nil;
-    
-    [[Objects sharedObject].goals removeObject:goal];
-    
-    [goal delete:goal];
+//+(void)removeGoal: (Goals *)goal{
+//    goal.name = nil;
+//    goal.tasks = nil;
+//    goal.visualGoal = nil;
+//    
+//    [[Objects sharedObject].goals removeObject:goal];
+//    
+//    [goal delete:goal];
+//}
+
++(void)removeGoal:(Goals *)goal {
+//    [goal.managedObjectContext deleteObject:goal];
 }
 
 @end

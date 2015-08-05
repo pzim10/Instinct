@@ -20,9 +20,11 @@
 +(NSString *)goalTitle: (Goals*) goal;
 +(NSArray *)goalTasks: (Goals*) goal;
 
++(void)save;
 +(void)addTasktoGoal:(Task *)task forGoal: (Goals *)goal;
 +(void)removeTaskFromGoal:(Task *)task fromGoal: (Goals *)goal;
 
-+(void)removeGoal: (Goals *)goal;
++(void)removeGoal:(Goals *)goal;
+//+(void)removeGoal: (Goals *)goal;
 
 @end

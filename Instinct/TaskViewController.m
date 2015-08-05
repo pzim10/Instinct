@@ -182,7 +182,6 @@
         // remove object from task array;
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete" message:@"Are you sure you want to delete this task?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
 //        alert.alertViewStyle = UIAlertViewStyleDefault;
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         for (Task *task in [Objects sharedObject].tasks) {
             if ([task.name isEqualToString:[NSString stringWithFormat:@"%@", cell.textLabel.text]]) {
