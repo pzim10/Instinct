@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  SummaryViewController.h
 //  Instinct
 //
 //  Created by Peter Zimmerman on 7/31/15.
@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SummaryController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-// ADD A USER CLASS
+@interface SummaryViewController : UIViewController
 
 @end
-

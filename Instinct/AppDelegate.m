@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "Goals.h"
+#import "Objects.h"
 
 @interface AppDelegate ()
 

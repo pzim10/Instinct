@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  GoalsViewController.h
 //  Instinct
 //
 //  Created by Peter Zimmerman on 7/31/15.
@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Objects.h"
+#import "GoalController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-// ADD A USER CLASS
+@interface GoalsViewController : UIViewController
 
 @end
-
