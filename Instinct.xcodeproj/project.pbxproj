@@ -33,7 +33,6 @@
 		28F96E371B721363009CF483 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E361B721363009CF483 /* Stack.m */; };
 		28F96E3A1B721389009CF483 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E381B721389009CF483 /* Model.xcdatamodeld */; };
 		28F96E3C1B7213A4009CF483 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F96E3B1B7213A4009CF483 /* CoreData.framework */; };
-		28F96E3F1B72D7F0009CF483 /* Goals.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F96E3E1B72D7F0009CF483 /* Goals.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +95,6 @@
 		28F96E361B721363009CF483 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		28F96E391B721389009CF483 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		28F96E3B1B7213A4009CF483 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		28F96E3D1B72D7F0009CF483 /* Goals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Goals.h; path = ../Goals.h; sourceTree = "<group>"; };
-		28F96E3E1B72D7F0009CF483 /* Goals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Goals.m; path = ../Goals.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,8 +187,6 @@
 				28EB48231B6EDD10005F9AD2 /* Objects.m */,
 				28EB47AB1B6C19BF005F9AD2 /* Settings.h */,
 				28EB47AC1B6C19BF005F9AD2 /* Settings.m */,
-				28F96E3D1B72D7F0009CF483 /* Goals.h */,
-				28F96E3E1B72D7F0009CF483 /* Goals.m */,
 				28EB47BE1B6C5A72005F9AD2 /* Goals.h */,
 				28EB47BF1B6C5A72005F9AD2 /* Goals.m */,
 				28EB47BB1B6C5A54005F9AD2 /* Today.h */,
@@ -297,6 +292,7 @@
 				TargetAttributes = {
 					28EB47751B6C09C9005F9AD2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = A4WHWDG5S8;
 					};
 					28EB47941B6C09C9005F9AD2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -362,7 +358,6 @@
 				28EB477C1B6C09C9005F9AD2 /* main.m in Sources */,
 				28EB47D21B6C5B2E005F9AD2 /* TaskController.m in Sources */,
 				28EB47C01B6C5A72005F9AD2 /* Goals.m in Sources */,
-				28F96E3F1B72D7F0009CF483 /* Goals.m in Sources */,
 				28EB47CF1B6C5B23005F9AD2 /* SummaryController.m in Sources */,
 				28EB47DE1B6C5B6C005F9AD2 /* TaskViewController.m in Sources */,
 				28EB47C61B6C5AD7005F9AD2 /* Summary.m in Sources */,
@@ -497,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Instinct/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Instinct/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
