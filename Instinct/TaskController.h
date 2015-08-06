@@ -11,6 +11,8 @@
 
 @interface TaskController : NSObject
 
+@property (strong, nonatomic, readonly) NSArray *tasks;
+
 +(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days;
 
 +(Task *)getTaskWithName: (NSString *)name;
@@ -23,6 +25,5 @@
 +(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName;
 
 +(void)removeTask:(Task *)task;
-+(void)deleteTask:(Task *)task;
 
 @end

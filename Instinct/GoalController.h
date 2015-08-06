@@ -13,6 +13,8 @@
 
 @interface GoalController : NSObject
 
+@property (strong, nonatomic, readonly) NSArray *goals;
+
 +(void)createGoal:(NSString *)name;
 +(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName;
 

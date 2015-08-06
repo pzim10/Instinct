@@ -22,6 +22,7 @@
     
     [[Objects sharedObject].goals addObject:newGoal];
 }
+
 +(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName{
     Goals *newGoal = [Goals new];
     newGoal.name = name;
@@ -29,6 +30,15 @@
     newGoal.visualGoal = [UIImage imageNamed:imageName];
     
     [[Objects sharedObject].goals addObject:newGoal];
+}
+
+// Load the goals
+- (Goals *)createGoalWithName:(NSString *)name {
+    
+    Goals *goal = [NSEntityDescription insertNewObjectForEntityForName:@"Goals" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    goal.name = name;
+    
+    return goal;
 }
 
 // Display the goal
@@ -71,18 +81,6 @@
     [newArray removeObject:task];
     goal.tasks = newArray;
 }
-
-// Delete the goal
-
-//+(void)removeGoal: (Goals *)goal{
-//    goal.name = nil;
-//    goal.tasks = nil;
-//    goal.visualGoal = nil;
-//    
-//    [[Objects sharedObject].goals removeObject:goal];
-//    
-//    [goal delete:goal];
-//}
 
 +(void)removeGoal:(Goals *)goal {
 //    [goal.managedObjectContext deleteObject:goal];

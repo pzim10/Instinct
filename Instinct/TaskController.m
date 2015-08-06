@@ -21,7 +21,16 @@
     newTask.daysToPerfomTask = days;
     newTask.daysCompleted = 0;
     
+    [self save];
+    
     [[Objects sharedObject].tasks addObject:newTask];
+}
+
+- (Task *)createTaskWithName:(NSString *)name {
+    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    task.name = name;
+    
+    return task;
 }
 
 // Display tasks and Goals
@@ -46,9 +55,11 @@
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName{
     taskName.name = newName;
 }
+
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days{
     taskName.daysToPerfomTask = days;
 }
+
 +(void)updateCompletionFromTodayForTask:(Task *)taskName{
     taskName.daysUntilComplete--;
     if (taskName.daysUntilComplete == 0) {
@@ -65,23 +76,7 @@
     }
 }
 
-// Delete tasks
-//+(void)deleteTask:(Task *)task{
-//    task.name = nil;
-//    task.goalName = nil;
-//    task.daysCompleted = 0;
-//    task.daysToPerfomTask = nil;
-//    task.daysUntilComplete = 0;
-//    task.consecutiveDaysCompleted = 0;
-//    task.complete = nil;
-//    task.completedYesterday = nil;
-//    
-//    [[Objects sharedObject].tasks removeObject:task];
-//    
-//    [task delete:task];
-//}
-
-- (void)removeTask:(Task *)task {
++ (void)removeTask:(Task *)task {
 //    [task.managedObjectContext deleteObject:task];
 }
 
