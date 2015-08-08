@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Objects.h"
 #import "Task.h"
+#import "Stack.h"
 
 @interface TaskController : NSObject
 
 @property (strong, nonatomic, readonly) NSArray *tasks;
 
++(TaskController *)sharedTask;
+
 +(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days;
-
+//- (Task *)createTaskWithName:(NSString *)name;
 +(Task *)getTaskWithName: (NSString *)name;
++ (NSArray *)tasks;
 
-+(void)save;
+//+(void)save;
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName;
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days;
 +(void)updateCompletionFromTodayForTask:(Task *)taskName;

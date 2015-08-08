@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [GoalController defaultGoal];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -33,7 +34,7 @@
     CGFloat bottom = 70;
     // add scrollView and set bounds
     int i = 0;
-    for (Goals *goal in [Objects sharedObject].goals) {
+    for (Goal *goal in [GoalController goals]) {
         if ([goal.name isEqualToString:@""]) {
             // Don't do anything
         } else {
@@ -120,7 +121,7 @@
 }
 
 -(void)saveTapped {
-    for (Goals *goal in [Objects sharedObject].goals) {
+    for (Goal *goal in [GoalController goals]) {
         if ([goal.name isEqualToString:self.goalTitle]) {
             return;
         }

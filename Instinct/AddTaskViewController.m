@@ -58,7 +58,7 @@
     int i = 0;
     CGFloat side = 0;
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 120)];
-    for (Goals *goal in [Objects sharedObject].goals) {
+    for (Goal *goal in [GoalController goals]) {
         if ([goal.name isEqualToString: @""]) {
         } else {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 110)];
@@ -96,7 +96,7 @@
     if ([self.textField.text isEqualToString:@""] || self.textField.text == nil) {
         return;
     }
-    for (Task *task in [Objects sharedObject].tasks) {
+    for (Task *task in [TaskController tasks]) {
         if ([self.textField.text isEqualToString:task.name]) {
             return;
         }
@@ -105,25 +105,25 @@
     if (self.daily.on) {
         for (UISwitch *switches in self.switches) {
                 switches.on = YES;
-                [days addObject:switches];
+                [days addObject:@0];
         }
     } else if (self.weekdays.on) {
         int i = 0;
         for (UISwitch *switches in self.switches) {
             if (i < 6 && i != 0) {
                 switches.on = YES;
-                [days addObject:switches];
+                [days addObject:@0];
             } else {
                 switches.on = NO;
-                [days addObject:switches];
+                [days addObject:@1];
             }i++;
         }
     } else if (self.custom.on) {
         for (UISwitch *switches in self.switches) {
             if (switches.on) {
-                [days addObject:switches];
+                [days addObject:@0];
             } else if (!switches.on){
-                [days addObject:switches];
+                [days addObject:@1];
             }
         }
     }
@@ -133,7 +133,7 @@
         for (UIButton *button in self.buttons) {
             i++;
             if (button.backgroundColor == [UIColor greenColor]) {
-                for (Task *task in [Objects sharedObject].tasks) {
+                for (Task *task in [TaskController tasks]) {
                     if ([task.name isEqualToString: self.textField.text]){
                         [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
                         [self.navigationController popViewControllerAnimated:YES];
@@ -141,7 +141,7 @@
                     }
                 }
             } else if (i == self.buttons.count){
-                for (Task *task in [Objects sharedObject].tasks) {
+                for (Task *task in [TaskController tasks]) {
                     if ([task.name isEqualToString: self.textField.text]){
                         [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:@""]];
                         break;
@@ -150,7 +150,7 @@
             }
         }
     } else {
-        for (Task *task in [Objects sharedObject].tasks) {
+        for (Task *task in [TaskController tasks]) {
             if ([task.name isEqualToString: self.textField.text]){
                 [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:@""]];
             }

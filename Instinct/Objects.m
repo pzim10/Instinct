@@ -7,7 +7,8 @@
 //
 
 #import "Objects.h"
-#import "Goals.h"
+#import "Goal.h"
+#import "GoalController.h"
 #import "Task.h"
 
 @implementation Objects
@@ -19,7 +20,7 @@
         sharedObject = [Objects new];
         sharedObject.goals = [NSMutableArray new];
         sharedObject.tasks = [NSMutableArray new];
-        [sharedObject.goals addObject:[Goals sharedGoal]];
+//        [sharedObject.goals addObject:[GoalController defaultGoal]];
     });
     return sharedObject;
 }

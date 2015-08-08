@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		285496331B75482500AFE16C /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496321B75482500AFE16C /* Goal.m */; };
+		285496361B75482600AFE16C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496351B75482600AFE16C /* Task.m */; };
 		28EB477C1B6C09C9005F9AD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477B1B6C09C9005F9AD2 /* main.m */; };
 		28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477E1B6C09C9005F9AD2 /* AppDelegate.m */; };
 		28EB478B1B6C09C9005F9AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28EB47891B6C09C9005F9AD2 /* Main.storyboard */; };
@@ -18,8 +20,6 @@
 		28EB47AD1B6C19BF005F9AD2 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47AC1B6C19BF005F9AD2 /* Settings.m */; };
 		28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47AF1B6C1BB1005F9AD2 /* SettingsController.m */; };
 		28EB47BD1B6C5A54005F9AD2 /* Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47BC1B6C5A54005F9AD2 /* Today.m */; };
-		28EB47C01B6C5A72005F9AD2 /* Goals.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47BF1B6C5A72005F9AD2 /* Goals.m */; };
-		28EB47C31B6C5A80005F9AD2 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47C21B6C5A80005F9AD2 /* Task.m */; };
 		28EB47C61B6C5AD7005F9AD2 /* Summary.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47C51B6C5AD7005F9AD2 /* Summary.m */; };
 		28EB47C91B6C5B04005F9AD2 /* GoalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47C81B6C5B04005F9AD2 /* GoalController.m */; };
 		28EB47CC1B6C5B17005F9AD2 /* TodayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47CB1B6C5B17005F9AD2 /* TodayController.m */; };
@@ -46,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		285496311B75482500AFE16C /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		285496321B75482500AFE16C /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
+		285496341B75482600AFE16C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		285496351B75482600AFE16C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		28EB47761B6C09C9005F9AD2 /* Instinct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instinct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EB477A1B6C09C9005F9AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28EB477B1B6C09C9005F9AD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,10 +71,6 @@
 		28EB47AF1B6C1BB1005F9AD2 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		28EB47BB1B6C5A54005F9AD2 /* Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Today.h; sourceTree = "<group>"; };
 		28EB47BC1B6C5A54005F9AD2 /* Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Today.m; sourceTree = "<group>"; };
-		28EB47BE1B6C5A72005F9AD2 /* Goals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goals.h; sourceTree = "<group>"; };
-		28EB47BF1B6C5A72005F9AD2 /* Goals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goals.m; sourceTree = "<group>"; };
-		28EB47C11B6C5A80005F9AD2 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		28EB47C21B6C5A80005F9AD2 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		28EB47C41B6C5AD7005F9AD2 /* Summary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summary.h; sourceTree = "<group>"; };
 		28EB47C51B6C5AD7005F9AD2 /* Summary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summary.m; sourceTree = "<group>"; };
 		28EB47C71B6C5B04005F9AD2 /* GoalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalController.h; sourceTree = "<group>"; };
@@ -183,16 +183,16 @@
 		28EB47B71B6C4664005F9AD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				285496341B75482600AFE16C /* Task.h */,
+				285496351B75482600AFE16C /* Task.m */,
+				285496311B75482500AFE16C /* Goal.h */,
+				285496321B75482500AFE16C /* Goal.m */,
 				28EB48221B6EDD10005F9AD2 /* Objects.h */,
 				28EB48231B6EDD10005F9AD2 /* Objects.m */,
 				28EB47AB1B6C19BF005F9AD2 /* Settings.h */,
 				28EB47AC1B6C19BF005F9AD2 /* Settings.m */,
-				28EB47BE1B6C5A72005F9AD2 /* Goals.h */,
-				28EB47BF1B6C5A72005F9AD2 /* Goals.m */,
 				28EB47BB1B6C5A54005F9AD2 /* Today.h */,
 				28EB47BC1B6C5A54005F9AD2 /* Today.m */,
-				28EB47C11B6C5A80005F9AD2 /* Task.h */,
-				28EB47C21B6C5A80005F9AD2 /* Task.m */,
 				28EB47C41B6C5AD7005F9AD2 /* Summary.h */,
 				28EB47C51B6C5AD7005F9AD2 /* Summary.m */,
 			);
@@ -344,20 +344,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285496331B75482500AFE16C /* Goal.m in Sources */,
 				28EB47D81B6C5B5E005F9AD2 /* TodayViewController.m in Sources */,
 				28EB47C91B6C5B04005F9AD2 /* GoalController.m in Sources */,
-				28EB47C31B6C5A80005F9AD2 /* Task.m in Sources */,
 				28EB47A71B6C1579005F9AD2 /* AddTaskViewController.m in Sources */,
 				28EB47BD1B6C5A54005F9AD2 /* Today.m in Sources */,
 				28EB47DB1B6C5B65005F9AD2 /* SummaryViewController.m in Sources */,
 				28EB48241B6EDD10005F9AD2 /* Objects.m in Sources */,
+				285496361B75482600AFE16C /* Task.m in Sources */,
 				28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */,
 				28F96E371B721363009CF483 /* Stack.m in Sources */,
 				28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */,
 				28EB47D51B6C5B57005F9AD2 /* GoalsViewController.m in Sources */,
 				28EB477C1B6C09C9005F9AD2 /* main.m in Sources */,
 				28EB47D21B6C5B2E005F9AD2 /* TaskController.m in Sources */,
-				28EB47C01B6C5A72005F9AD2 /* Goals.m in Sources */,
 				28EB47CF1B6C5B23005F9AD2 /* SummaryController.m in Sources */,
 				28EB47DE1B6C5B6C005F9AD2 /* TaskViewController.m in Sources */,
 				28EB47C61B6C5AD7005F9AD2 /* Summary.m in Sources */,

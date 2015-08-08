@@ -8,25 +8,30 @@
 
 #import <UIKit/UIKit.h>
 #import "Objects.h"
-#import "Goals.h"
+#import "Stack.h"
+#import "Goal.h"
 #import "Task.h"
 
 @interface GoalController : NSObject
 
 @property (strong, nonatomic, readonly) NSArray *goals;
 
-+(void)createGoal:(NSString *)name;
-+(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName;
++(GoalController *)sharedGoal;
 
-+(Goals *)goalWithName: (NSString *)goalName;
-+(NSString *)goalTitle: (Goals*) goal;
-+(NSArray *)goalTasks: (Goals*) goal;
++(void)createGoal:(NSString *)name;
+//+(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName;
++(void)defaultGoal;
++ (NSArray *)goals;
+
++(Goal *)goalWithName: (NSString *)goalName;
++(NSString *)goalTitle: (Goal*) goal;
++(NSArray *)goalTasks: (Goal*) goal;
 
 +(void)save;
-+(void)addTasktoGoal:(Task *)task forGoal: (Goals *)goal;
-+(void)removeTaskFromGoal:(Task *)task fromGoal: (Goals *)goal;
++(void)addTasktoGoal:(Task *)task forGoal: (Goal *)goal;
++(void)removeTaskFromGoal:(Task *)task fromGoal: (Goal *)goal;
 
-+(void)removeGoal:(Goals *)goal;
++(void)removeGoal:(Goal *)goal;
 //+(void)removeGoal: (Goals *)goal;
 
 @end

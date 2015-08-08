@@ -84,7 +84,7 @@
 -(void)taskCompleted: (UILabel *)label {
     Task *task = [TaskController getTaskWithName:label.text];
     
-    task.complete = YES;
+    task.complete = @0;
 }
 
 - (void)didReceiveMemoryWarning {

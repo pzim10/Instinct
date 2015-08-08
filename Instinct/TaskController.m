@@ -7,30 +7,52 @@
 //
 
 #import "TaskController.h"
-#import "Objects.h"
-#import "Stack.h"
 
 @implementation TaskController
 
 // Create new task
++ (TaskController *)sharedTask {
+    static TaskController *sharedTask = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedTask = [TaskController new];
+    });
+    return sharedTask;
+}
 
 +(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days{
-    Task *newTask = [Task new];
+    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newTask.name = name;
-    newTask.daysUntilComplete = 66;
-    newTask.daysToPerfomTask = days;
-    newTask.daysCompleted = 0;
+    newTask.daysUntilComplete = @66;
+    newTask.sunday = days[0];
+    newTask.monday = days[1];
+    newTask.tuesday = days[2];
+    newTask.wednesday = days[3];
+    newTask.thursday = days[4];
+    newTask.friday = days[5];
+    newTask.saturday = days[6];
+
+    newTask.daysCompleted = @0;
     
     [self save];
     
     [[Objects sharedObject].tasks addObject:newTask];
 }
 
-- (Task *)createTaskWithName:(NSString *)name {
-    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-    task.name = name;
+//- (Task *)createTaskWithName:(NSString *)name {
+//    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+//    task.name = name;
+//    
+//    return task;
+//}
+
++ (NSArray *)tasks {
     
-    return task;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    
+    NSArray *fetchedObjects = [[Stack sharedInstance].managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    return fetchedObjects;
 }
 
 // Display tasks and Goals
@@ -57,22 +79,22 @@
 }
 
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days{
-    taskName.daysToPerfomTask = days;
+//    taskName.daysToPerfomTask = days;
 }
 
 +(void)updateCompletionFromTodayForTask:(Task *)taskName{
-    taskName.daysUntilComplete--;
+//    taskName.daysUntilComplete--;
     if (taskName.daysUntilComplete == 0) {
         // Send out notification of success! perhaps even an awesome success view!
         NSLog(@"Success");
     }
 }
 +(void)updateDaysCompleted: (BOOL) complete forTask:(Task *)taskName{
-    taskName.daysCompleted++;
+//    taskName.daysCompleted++;
 }
 +(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName{
     if (taskName.complete && taskName.completedYesterday) {
-        taskName.consecutiveDaysCompleted++;
+//        taskName.consecutiveDaysCompleted++;
     }
 }
 

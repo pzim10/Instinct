@@ -7,35 +7,65 @@
 //
 
 #import "GoalController.h"
-#import "Stack.h"
+
+@interface GoalController ()
+
+@property (strong, nonatomic) NSArray *goals;
+
+@end
 
 @implementation GoalController
+
++ (GoalController *)sharedGoal {
+    static GoalController *sharedGoal = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedGoal = [GoalController new];
+    });
+    return sharedGoal;
+}
 
 // Create a new goal
 
 +(void)createGoal:(NSString *)name{
-    Goals *newGoal = [Goals new];
+    Goal *newGoal = [NSEntityDescription insertNewObjectForEntityForName:@"Goal" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    
     newGoal.name = name;
-    newGoal.tasks = [NSArray new];
     
     [self save];
     
     [[Objects sharedObject].goals addObject:newGoal];
 }
 
++(void)defaultGoal{
+    if ([self goals].count == 0) {
+        [self createGoal:@""];
+    }
+
+}
+
++ (NSArray *)goals {
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Goal"];
+    
+    NSArray *fetchedObjects = [[Stack sharedInstance].managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    return fetchedObjects;
+}
+
 +(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName{
-    Goals *newGoal = [Goals new];
+    Goal *newGoal = [Goal new];
     newGoal.name = name;
-    newGoal.tasks = [NSArray new];
-    newGoal.visualGoal = [UIImage imageNamed:imageName];
+
+//    newGoal.visualGoal = [UIImage imageNamed:imageName];
     
     [[Objects sharedObject].goals addObject:newGoal];
 }
 
 // Load the goals
-- (Goals *)createGoalWithName:(NSString *)name {
+- (Goal *)createGoalWithName:(NSString *)name {
     
-    Goals *goal = [NSEntityDescription insertNewObjectForEntityForName:@"Goals" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    Goal *goal = [NSEntityDescription insertNewObjectForEntityForName:@"Goals" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     goal.name = name;
     
     return goal;
@@ -43,8 +73,8 @@
 
 // Display the goal
 
-+(Goals *)goalWithName:(NSString *)goalName{
-    for (Goals *goal in [Objects sharedObject].goals) {
++(Goal *)goalWithName:(NSString *)goalName{
+    for (Goal *goal in [self goals]) {
         if ([goal.name isEqualToString:goalName]) {
             return goal;
         }
@@ -54,12 +84,12 @@
     return nil;
 }
 
-+(NSString *)goalTitle: (Goals*) goal{
++(NSString *)goalTitle: (Goal*) goal{
     return goal.name;
 }
-+(NSArray *)goalTasks: (Goals*) goal{
-    return goal.tasks;
-}
+//+(NSArray *)goalTasks: (Goal*) goal{
+//    return goal.tasks;
+//}
 
 // Edit the goal
 +(void)save {
@@ -70,19 +100,17 @@
     [[Stack sharedInstance].managedObjectContext save:nil];
 }
 
-+(void)addTasktoGoal:(Task *)task forGoal: (Goals *)goal{
-    NSMutableArray *newArray = [goal.tasks mutableCopy];
-    task.goalName = goal.name;
-    [newArray addObject:task];
-    goal.tasks = newArray;
++(void)addTasktoGoal:(Task *)task forGoal: (Goal *)goal{
+    task.goal = goal;
+    [self save];
 }
-+(void)removeTaskFromGoal:(Task *)task fromGoal: (Goals *)goal{
-    NSMutableArray *newArray = [goal.tasks mutableCopy];
-    [newArray removeObject:task];
-    goal.tasks = newArray;
++(void)removeTaskFromGoal:(Task *)task fromGoal: (Goal *)goal{
+//    NSMutableArray *newArray = [goal.tasks mutableCopy];
+//    [newArray removeObject:task];
+//    goal.tasks = newArray;
 }
 
-+(void)removeGoal:(Goals *)goal {
++(void)removeGoal:(Goal *)goal {
 //    [goal.managedObjectContext deleteObject:goal];
 }
 

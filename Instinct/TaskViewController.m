@@ -155,11 +155,16 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"taskCell"];
     
-    Goals *goal = [Objects sharedObject].goals[indexPath.section];
-    
-    Task *task = goal.tasks[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", task.name];
-    
+//    Goal *goal = [Objects sharedObject].goals[indexPath.section];
+    Goal *goal = [GoalController goals][indexPath.section];
+    int i =0;
+    for (Task *task in goal.tasks) {
+        if (i == indexPath.row) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@", task.name];
+        }
+        i++;
+    }
+
     UISwitch *mySwitch = [[UISwitch alloc] initWithFrame: CGRectMake(cell.frame.size.width - 40, cell.frame.size.height-37, 0, 0)];
     UILabel *completionLabel = [[UILabel alloc] initWithFrame:CGRectMake(mySwitch.frame.origin.x - 60, 10, 60, 20)];
 
@@ -183,14 +188,14 @@
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete" message:@"Are you sure you want to delete this task?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
 //        alert.alertViewStyle = UIAlertViewStyleDefault;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        for (Task *task in [Objects sharedObject].tasks) {
+        for (Task *task in [TaskController tasks]) {
             if ([task.name isEqualToString:[NSString stringWithFormat:@"%@", cell.textLabel.text]]) {
-                Goals *goal = [GoalController goalWithName:task.goalName];
+                Goal *goal = [GoalController goalWithName:task.goalName];
                 NSMutableArray *newArray = [goal.tasks mutableCopy];
                 [newArray removeObject:task];
-                goal.tasks = newArray;
+//                goal.tasks = newArray;
 #warning This is causing my app to crash when I have 2 tasks for the same goal created and try to delete 1
-                [[Objects sharedObject].tasks removeObject:task];
+//                [[TaskController tasks] removeObject:task];
                 [self viewWillAppear:YES];
             }
         }
@@ -306,24 +311,24 @@
     Task *task = [TaskController getTaskWithName:cell.textLabel.text];
     self.rename = task.name;
     
-    for (int i =0; i < self.switches.count; i++) {
-        UISwitch *switch2 = task.daysToPerfomTask[i];
-        if (switch2.on == YES) {
-            UISwitch *switch3 = self.switches[i];
-            switch3.on = YES;
-        }
-    }
+//    for (int i =0; i < self.switches.count; i++) {
+//        UISwitch *switch2 = task.daysToPerfomTask[i];
+//        if (switch2.on == YES) {
+//            UISwitch *switch3 = self.switches[i];
+//            switch3.on = YES;
+//        }
+//    }
 }
 
 -(void)saveTapped: (UIView *)theView {
-    if ([self.textField.text isEqualToString:@""]) {
-        Task *task = [TaskController getTaskWithName:self.rename];
-        task.daysToPerfomTask = self.switches;
-    } else {
-        Task *task = [TaskController getTaskWithName:self.rename];
-        [TaskController renameTask:task newName:self.textField.text];
-        task.daysToPerfomTask = self.switches;
-    }
+//    if ([self.textField.text isEqualToString:@""]) {
+//        Task *task = [TaskController getTaskWithName:self.rename];
+//        task.daysToPerfomTask = self.switches;
+//    } else {
+//        Task *task = [TaskController getTaskWithName:self.rename];
+//        [TaskController renameTask:task newName:self.textField.text];
+//        task.daysToPerfomTask = self.switches;
+//    }
     
     self.background.hidden = YES;
     [self viewWillAppear:YES];
@@ -347,22 +352,22 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:{
-            Goals *goal = [Objects sharedObject].goals[0];
+            Goal *goal = [GoalController goals][0];
             return goal.name;
         }
             break;
         case 1:{
-            Goals *goal = [Objects sharedObject].goals[1];
+            Goal *goal = [GoalController goals][1];
             return goal.name;
         }
             break;
         case 2:{
-            Goals *goal = [Objects sharedObject].goals[2];
+            Goal *goal = [GoalController goals][2];
             return goal.name;
         }
             break;
         case 3:{
-            Goals *goal = [Objects sharedObject].goals[3];
+            Goal *goal = [GoalController goals][3];
             return goal.name;
         }
             break;
@@ -376,22 +381,22 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     switch (section) {
         case 0:{
-            Goals *goal = [Objects sharedObject].goals[0];
+            Goal *goal = [GoalController goals][0];
             return goal.tasks.count;
         }
             break;
         case 1:{
-            Goals *goal = [Objects sharedObject].goals[1];
+            Goal *goal = [GoalController goals][1];
             return goal.tasks.count;
         }
             break;
         case 2:{
-            Goals *goal = [Objects sharedObject].goals[2];
+            Goal *goal = [GoalController goals][2];
             return goal.tasks.count;
         }
             break;
         case 3:{
-            Goals *goal = [Objects sharedObject].goals[3];
+            Goal *goal = [GoalController goals][3];
             return goal.tasks.count;
         }
             break;
@@ -404,7 +409,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [Objects sharedObject].goals.count;
+    return [GoalController goals].count;
     // return number of goals
 }
 - (void)didReceiveMemoryWarning {
