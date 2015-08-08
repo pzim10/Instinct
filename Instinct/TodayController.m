@@ -29,56 +29,48 @@
     }
     NSMutableArray *todaysTasks = [NSMutableArray new];
     
-    int dayOfWeek = 5;
     NSString *today = [self getToday];
     
 //  Turn today string into an array index
     if ([today isEqualToString:@"Sunday"]) {
-        dayOfWeek= 0;
         for (Task *task in tasks) {
-            if (task.sunday == 0) {
+            if ([task.sunday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Monday"]) {
-        dayOfWeek= 1;
         for (Task *task in tasks) {
-            if (task.monday == 0) {
+            if ([task.monday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Tuesday"]) {
-        dayOfWeek= 2;
         for (Task *task in tasks) {
-            if (task.tuesday == 0) {
+            if ([task.tuesday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Wednesday"]) {
-        dayOfWeek= 3;
         for (Task *task in tasks) {
-            if (task.wednesday == 0) {
+            if ([task.wednesday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Thursday"]) {
-        dayOfWeek= 4;
         for (Task *task in tasks) {
-            if (task.thursday == 0) {
+            if ([task.thursday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Friday"]) {
-        dayOfWeek= 5;
         for (Task *task in tasks) {
-            if (task.friday == 0) {
+            if ([task.friday isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Saturday"]) {
-        dayOfWeek= 6;
         for (Task *task in tasks) {
-            if (task.saturday == 0) {
+            if ([task.saturday  isEqual: @0]) {
                 [todaysTasks addObject:task];
             }
         }
