@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Objects.h"
 #import "Stack.h"
 #import "Goal.h"
 #import "Task.h"
@@ -25,7 +24,7 @@
 
 +(Goal *)goalWithName: (NSString *)goalName;
 +(NSString *)goalTitle: (Goal*) goal;
-+(NSArray *)goalTasks: (Goal*) goal;
+//+(NSArray *)goalTasks: (Goal*) goal;
 
 +(void)save;
 +(void)addTasktoGoal:(Task *)task forGoal: (Goal *)goal;

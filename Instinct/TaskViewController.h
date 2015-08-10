@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskController.h"
-#import "Objects.h"
 
 @interface TaskViewController : UIViewController
 

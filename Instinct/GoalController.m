@@ -33,8 +33,6 @@
     newGoal.name = name;
     
     [self save];
-    
-    [[Objects sharedObject].goals addObject:newGoal];
 }
 
 +(void)defaultGoal{
@@ -58,8 +56,6 @@
     newGoal.name = name;
 
 //    newGoal.visualGoal = [UIImage imageNamed:imageName];
-    
-    [[Objects sharedObject].goals addObject:newGoal];
 }
 
 // Load the goals

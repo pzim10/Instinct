@@ -35,8 +35,6 @@
     newTask.daysCompleted = @0;
     
     [self save];
-    
-    [[Objects sharedObject].tasks addObject:newTask];
 }
 
 //- (Task *)createTaskWithName:(NSString *)name {
@@ -57,7 +55,7 @@
 
 // Display tasks and Goals
 +(Task *)getTaskWithName: (NSString *)name{
-    for (Task *task in [Objects sharedObject].tasks) {
+    for (Task *task in [self tasks]) {
         if ([task.name isEqualToString:name]) {
             return task;
         }

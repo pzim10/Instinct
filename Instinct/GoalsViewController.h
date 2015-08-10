@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Objects.h"
 #import "GoalController.h"
 
-@interface GoalsViewController : UIViewController
+@interface GoalsViewController : UITableViewController
 
 @end

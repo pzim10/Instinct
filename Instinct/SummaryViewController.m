@@ -20,13 +20,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(150, 150, 50, 50)];
-    label.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:label];
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame: CGRectMake(20, 70, self.view.frame.size.width - 40, self.view.frame.size.height - 84) style:UITableViewStylePlain];
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
 }
 
 // Public method called from DataViewController to fill the current page

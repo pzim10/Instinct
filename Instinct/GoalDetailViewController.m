@@ -1,22 +1,23 @@
 //
-//  TodayViewController.m
+//  GoalsViewController.m
 //  Instinct
 //
 //  Created by Peter Zimmerman on 7/31/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
-#import "TodayViewController.h"
-#import "TaskController.h"
+#import "GoalDetailViewController.h"
 
-@interface TodayViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
+@interface GoalDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UITextView *textNotes;
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
-@property (weak, nonatomic) IBOutlet UITextView *quoteLabel;
 
 @end
 
-@implementation TodayViewController
+@implementation GoalDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,24 +25,16 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.quoteLabel.text = @"I want to succeed.\nI can succeed.\nSo I will succeed!";
-    self.quoteLabel.textAlignment = NSTextAlignmentCenter;
-    self.todayLabel.text = [TodayController getToday];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
 }
 
--(void)taskCompleted: (UILabel *)label {
-    Task *task = [TaskController getTaskWithName:label.text];
-    
-    task.complete = @0;
-}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"task"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"goal"];
+    Goal *goal = [GoalController goalWithName:self.navigationItem.title];
     int i =0;
-    for (Task *task in [TodayController getTasksForToday]) {
+    for (Task *task in goal.tasks) {
         if (i == indexPath.row) {
             cell.textLabel.text = task.name;
         }
@@ -51,7 +44,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [TodayController getTasksForToday].count;
+    for (Goal *goal in [GoalController goals]) {
+        if ([goal.name isEqualToString:self.navigationItem.title]) {
+            return goal.tasks.count;
+        }
+    }
+    return 5;
 }
 
 - (void)didReceiveMemoryWarning {
