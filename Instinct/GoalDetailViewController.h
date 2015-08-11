@@ -11,6 +11,6 @@
 
 @interface GoalDetailViewController : UIViewController
 
-@property (nonatomic, strong) NSString *goalTitle;
+@property (nonatomic, strong) Goal *goal;
 
 @end

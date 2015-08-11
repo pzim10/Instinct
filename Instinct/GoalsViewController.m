@@ -44,11 +44,26 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"addGoal"];
         cell.textLabel.text = @"Add Goal";
     }
+    [cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [GoalController goals].count +1;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"goalDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        GoalDetailViewController *detail = segue.destinationViewController;
+        detail.goal = [GoalController goalWithName:cell.textLabel.text];
+    } else if ([segue.identifier isEqualToString:@"addGoal"]) {
+        AddGoalViewController *add = segue.destinationViewController;
+        add.goal = nil;
+        add.nameField.text = @"";
+        add.notesText.text = @"";
+    }
 }
 
 @end

@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
-@property (weak, nonatomic) IBOutlet UITextView *textNotes;
+@property (weak, nonatomic) IBOutlet UILabel *textNotes;
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
 
 @end
@@ -25,6 +25,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2);
+    self.navigationItem.title = self.goal.name;
+    self.image.image = [UIImage imageNamed:@"goals"];
+    self.textNotes.text = @"These are my notes \nAren\'t they original!";
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -32,9 +37,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"goal"];
-    Goal *goal = [GoalController goalWithName:self.navigationItem.title];
     int i =0;
-    for (Task *task in goal.tasks) {
+    for (Task *task in self.goal.tasks) {
         if (i == indexPath.row) {
             cell.textLabel.text = task.name;
         }
@@ -44,12 +48,11 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    for (Goal *goal in [GoalController goals]) {
-        if ([goal.name isEqualToString:self.navigationItem.title]) {
-            return goal.tasks.count;
-        }
-    }
-    return 5;
+    return self.goal.tasks.count;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"Tasks";
 }
 
 - (void)didReceiveMemoryWarning {

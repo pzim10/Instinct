@@ -14,9 +14,21 @@
 
 @implementation AddGoalViewController
 
+- (IBAction)saveTapped:(id)sender {
+    if (![self.nameField.text isEqualToString:@""]) {
+        return;
+    }
+    self.goal.name = self.nameField.text;
+//    self.goal.notes = self.notesText.text;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (self.goal) {
+        self.nameField.text = self.goal.name;
+//        self.notesText.text = self.goal.notes;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

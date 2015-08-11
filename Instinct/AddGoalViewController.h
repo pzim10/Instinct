@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoalController.h"
 
 @interface AddGoalViewController : UIViewController
+
+@property (nonatomic, strong) Goal *goal;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextView *notesText;
+
 
 @end
