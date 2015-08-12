@@ -7,6 +7,7 @@
 //
 
 #import "GoalDetailViewController.h"
+#import "AddGoalViewController.h"
 
 @interface GoalDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -53,6 +54,11 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"Tasks";
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    AddGoalViewController *add = segue.destinationViewController;
+    add.goal = self.goal;
 }
 
 - (void)didReceiveMemoryWarning {

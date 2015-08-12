@@ -42,9 +42,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (self.editTask) {
+        self.textField.text = self.editTask.name;
+        self.Sunday.on = self.editTask.sunday;
+        self.Monday.on = self.editTask.monday;
+        self.Tuesday.on = self.editTask.tuesday;
+        self.Wednesday.on = self.editTask.wednesday;
+        self.Thursday.on = self.editTask.thursday;
+        self.Friday.on = self.editTask.friday;
+        self.Saturday.on = self.editTask.saturday;
+        self.custom.on = YES;
+        self.daily.on = NO;
+        self.weekdays.on = NO;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    self.editTask = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -58,18 +72,20 @@
     CGFloat side = 0;
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 120)];
     for (Goal *goal in [GoalController goals]) {
-        if ([goal.name isEqualToString: @""]) {
-        } else {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 110)];
         [button setTitle:goal.name forState:UIControlStateNormal];
+        button.titleLabel.numberOfLines = 0;
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor whiteColor];
+        if ([self.editTask.goalName isEqualToString: button.titleLabel.text]) {
+            button.backgroundColor = [UIColor greenColor];
+        } else {
+            button.backgroundColor = [UIColor whiteColor];
+        }
         [button addTarget:self action:@selector(goalTapped:) forControlEvents:UIControlEventTouchUpInside];
         [scroll addSubview:button];
         [self.buttons addObject:button];
         i++;
         side = button.frame.origin.x + 175;
-        }
     }
     
     scroll.contentSize = CGSizeMake(side, 120);
@@ -94,7 +110,28 @@
 - (IBAction)saveTapped:(id)sender {
     if ([self.textField.text isEqualToString:@""] || self.textField.text == nil) {
         return;
+    } else {
+        BOOL good = FALSE;
+        for (UIButton *button in self.buttons) {
+            if (button.backgroundColor == [UIColor greenColor]) {
+                good = TRUE;
+            }
+        }
+        if (!good) {
+            return;
+        }
     }
+    
+//  Renaming Tasks
+    
+    if (self.editTask) {
+        [TaskController renameTask:[TaskController getTaskWithName:self.editTask.name] newName:self.textField.text];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+//  Creating New Tasks
+    
     for (Task *task in [TaskController tasks]) {
         if ([self.textField.text isEqualToString:task.name]) {
             return;
@@ -126,7 +163,11 @@
             }
         }
     }
+    
     [TaskController createTaskWtihNameAndDays:self.textField.text arrayOfDays:days];
+    
+//  Assigning the goal
+    
     int i =0;
     if (self.buttons.count >0) {
         for (UIButton *button in self.buttons) {

@@ -32,8 +32,7 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     AddGoalViewController *add = segue.destinationViewController;
-    add.goal.name = cell.textLabel.text;
-    add.nameField.text = cell.textLabel.text;
+    add.name = cell.textLabel.text;
 }
 
 @end

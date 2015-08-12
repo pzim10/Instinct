@@ -7,6 +7,7 @@
 //
 
 #import "GoalController.h"
+#import "TaskController.h"
 
 @interface GoalController ()
 
@@ -33,13 +34,6 @@
     newGoal.name = name;
     
     [self save];
-}
-
-+(void)defaultGoal{
-    if ([self goals].count == 0) {
-        [self createGoal:@""];
-    }
-
 }
 
 + (NSArray *)goals {
@@ -83,9 +77,6 @@
 +(NSString *)goalTitle: (Goal*) goal{
     return goal.name;
 }
-//+(NSArray *)goalTasks: (Goal*) goal{
-//    return goal.tasks;
-//}
 
 // Edit the goal
 +(void)save {
@@ -101,13 +92,32 @@
     [self save];
 }
 +(void)removeTaskFromGoal:(Task *)task fromGoal: (Goal *)goal{
-//    NSMutableArray *newArray = [goal.tasks mutableCopy];
-//    [newArray removeObject:task];
-//    goal.tasks = newArray;
+    for (Task *task2 in goal.tasks) {
+        if (task2 == task) {
+            [TaskController removeTask:task];
+        }
+    }
+    task.goal = nil;
+    task.name = nil;
+    task.goalName = nil;
+    task.complete = nil;
+    task.completedYesterday = nil;
+    task.consecutiveDaysCompleted = nil;
+    task.daysCompleted = nil;
+    task.daysUntilComplete = nil;
+    task.sunday = nil;
+    task.monday = nil;
+    task.tuesday = nil;
+    task.wednesday = nil;
+    task.thursday = nil;
+    task.friday = nil;
+    task.saturday = nil;
+    [self save];
 }
 
 +(void)removeGoal:(Goal *)goal {
-//    [goal.managedObjectContext deleteObject:goal];
+    [goal.managedObjectContext deleteObject:goal];
+    [self save];
 }
 
 @end

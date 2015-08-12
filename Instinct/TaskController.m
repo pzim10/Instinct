@@ -97,7 +97,7 @@
 }
 
 + (void)removeTask:(Task *)task {
-//    [task.managedObjectContext deleteObject:task];
+    [task.managedObjectContext deleteObject:task];
 }
 
 @end

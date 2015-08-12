@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GoalController.h"
 
-@interface AddGoalViewController : UIViewController
+@interface AddGoalViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, strong) NSString *name;

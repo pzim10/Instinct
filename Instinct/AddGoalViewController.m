@@ -15,12 +15,17 @@
 @implementation AddGoalViewController
 
 - (IBAction)saveTapped:(id)sender {
-    if (![self.nameField.text isEqualToString:@""]) {
+    if ([self.nameField.text isEqualToString:@""]) {
+        
         return;
     }
-    self.goal.name = self.nameField.text;
-//    self.goal.notes = self.notesText.text;
-    [GoalController createGoal:self.nameField.text];
+    Goal *check = [GoalController goalWithName:self.goal.name];
+    if (check) {
+        self.goal.name = self.name;
+    } else {
+        [GoalController createGoal:self.nameField.text];
+    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -28,10 +33,22 @@
     // Do any additional setup after loading the view.
     if (self.goal) {
         self.nameField.text = self.goal.name;
+        self.name = self.goal.name;
+    } else if (self.name) {
+        self.nameField.text = self.name;
 //        self.notesText.text = self.goal.notes;
     } else {
         self.name = @"";
+        self.nameField.text = @"";
     }
+}
+- (IBAction)nameChanged:(id)sender {
+    self.name = self.nameField.text;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

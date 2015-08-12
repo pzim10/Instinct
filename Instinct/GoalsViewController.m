@@ -19,10 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"Goals";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [self.tableView reloadData];
 }
 
 
@@ -58,12 +59,44 @@
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         GoalDetailViewController *detail = segue.destinationViewController;
         detail.goal = [GoalController goalWithName:cell.textLabel.text];
-    } else if ([segue.identifier isEqualToString:@"addGoal"]) {
-//        AddGoalViewController *add = segue.destinationViewController;
-//        add.goal = nil;
-//        add.nameField.text = @"";
-//        add.notesText.text = @"";
     }
 }
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // remove object from task array;
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        Goal *goal = [GoalController goalWithName:cell.textLabel.text];
+        [GoalController removeGoal:goal];
+        [self viewWillAppear:YES];
+        
+    }];
+    return @[action];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] -1){return NO;};
+    return YES;
+}
+
+//-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{return YES;}
+
+//-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{}
+
+
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -22,21 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"Tasks";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Create pre-set taskLabels
-//    NSArray *setTasks = @[
-//                          @"Excercise",
-//                          @"Art",
-//                          @"Write",
-//                          @"Sports",
-//                          @"Code",
-//                          @"Read",
-//                          @"Dance",
-//                          @"Sing",
-//                          @"Music"
-//                          ];
+    [self.tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -51,9 +41,6 @@
         }
         i++;
     }
-
-    tableView.editing = YES;
-    
     return cell;
 }
 
@@ -62,29 +49,31 @@
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // remove object from task array;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        for (Task *task in [TaskController tasks]) {
-            if ([task.name isEqualToString:[NSString stringWithFormat:@"%@", cell.textLabel.text]]) {
-                Goal *goal = [GoalController goalWithName:task.goalName];
-                NSMutableArray *newArray = [goal.tasks mutableCopy];
-                [newArray removeObject:task];
-//                goal.tasks = newArray;
-#warning This is causing my app to crash when I have 2 tasks for the same goal created and try to delete 1
-//                [[TaskController tasks] removeObject:task];
-                [self viewWillAppear:YES];
-            }
-        }
+        Task *task = [TaskController getTaskWithName:cell.textLabel.text];
+        Goal *goal = [GoalController goalWithName:task.goalName];
+        [GoalController removeTaskFromGoal:task fromGoal:goal];
+        [self viewWillAppear:YES];
+
     }];
     UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction *action2, NSIndexPath *indexPath) {
 //         get correct object and update it
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [self animateTableCellForEditing:cell fromTableView:tableView];
+        Task *task = [TaskController getTaskWithName:cell.textLabel.text];
+        AddTaskViewController *edit = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddTaskViewController class])];
+        edit.editTask = task;
+        edit.editTask.goal = task.goal;
+        edit.editTask.goalName = task.goal.name;
+        edit.textField.text = task.name;
+        edit.editTask.sunday = task.sunday;
+        edit.editTask.monday = task.monday;
+        edit.editTask.tuesday = task.tuesday;
+        edit.editTask.wednesday = task.wednesday;
+        edit.editTask.thursday = task.thursday;
+        edit.editTask.friday = task.friday;
+        edit.editTask.saturday = task.saturday;
+        [self.navigationController pushViewController:edit animated:YES];
     }];
-    for (int i =0; i < [tableView numberOfSections]; i++) {
-        if ([tableView numberOfRowsInSection:i] == 1) {
-            return @[action, action2];
-        }
-    }
-    return @[action2];
+    return @[action, action2];
 }
 
 -(void) animateTableCellForEditing: (UITableViewCell *) cell fromTableView:(UITableView *)tableView {

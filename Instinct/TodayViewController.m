@@ -21,12 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"Today";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     self.quoteLabel.text = @"I want to succeed.\nI can succeed.\nSo I will succeed!";
     self.quoteLabel.textAlignment = NSTextAlignmentCenter;
     self.todayLabel.text = [TodayController getToday];
+    [self.taskTable reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

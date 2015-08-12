@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskController.h"
 
 @interface AddTaskViewController : UIViewController
+
+@property (nonatomic, strong) Task *editTask;
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 

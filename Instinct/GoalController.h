@@ -19,7 +19,6 @@
 
 +(void)createGoal:(NSString *)name;
 //+(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName;
-+(void)defaultGoal;
 + (NSArray *)goals;
 
 +(Goal *)goalWithName: (NSString *)goalName;
@@ -31,6 +30,5 @@
 +(void)removeTaskFromGoal:(Task *)task fromGoal: (Goal *)goal;
 
 +(void)removeGoal:(Goal *)goal;
-//+(void)removeGoal: (Goals *)goal;
 
 @end

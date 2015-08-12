@@ -110,7 +110,7 @@ static NSString const *KeyProgramming = @"Learning to Program";
                                KeyAll: @[
                                        @"History",
                                        @"Politics",
-                                       @"Self improvement"
+                                       @"Self-improvement",
                                        @"Non Fiction",
                                        @"Fiction",
                                        @"Epic Fantasy",
@@ -124,9 +124,9 @@ static NSString const *KeyProgramming = @"Learning to Program";
                                        @"Lose Weight",
                                        @"Build Muscle",
                                        @"Biking",
-                                       @"Push ups",
-                                       @"Pull ups",
-                                       @"Sit ups",
+                                       @"Push-ups",
+                                       @"Pull-ups",
+                                       @"Sit-ups",
                                        @"Distance Running"
                                        ]
                                },
