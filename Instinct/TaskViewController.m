@@ -49,28 +49,37 @@
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // remove object from task array;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        Task *task = [TaskController getTaskWithName:cell.textLabel.text];
-        Goal *goal = [GoalController goalWithName:task.goalName];
-        [GoalController removeTaskFromGoal:task fromGoal:goal];
+        Goal *goal = [GoalController goals][indexPath.section];
+        for (Task *task in goal.tasks) {
+            if ([task.name isEqualToString:cell.textLabel.text]) {
+                [GoalController removeTaskFromGoal:task fromGoal:goal];
+                break;
+            }
+        }
         [self viewWillAppear:YES];
 
     }];
     UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction *action2, NSIndexPath *indexPath) {
 //         get correct object and update it
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        Task *task = [TaskController getTaskWithName:cell.textLabel.text];
         AddTaskViewController *edit = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddTaskViewController class])];
-        edit.editTask = task;
-        edit.editTask.goal = task.goal;
-        edit.editTask.goalName = task.goal.name;
-        edit.textField.text = task.name;
-        edit.editTask.sunday = task.sunday;
-        edit.editTask.monday = task.monday;
-        edit.editTask.tuesday = task.tuesday;
-        edit.editTask.wednesday = task.wednesday;
-        edit.editTask.thursday = task.thursday;
-        edit.editTask.friday = task.friday;
-        edit.editTask.saturday = task.saturday;
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        Goal *goal = [GoalController goals][indexPath.section];
+        for (Task *task in goal.tasks) {
+            if ([task.name isEqualToString:cell.textLabel.text]) {
+                edit.editTask = task;
+                edit.editTask.goal = task.goal;
+                edit.editTask.goalName = task.goal.name;
+                edit.textField.text = task.name;
+                edit.editTask.sunday = task.sunday;
+                edit.editTask.monday = task.monday;
+                edit.editTask.tuesday = task.tuesday;
+                edit.editTask.wednesday = task.wednesday;
+                edit.editTask.thursday = task.thursday;
+                edit.editTask.friday = task.friday;
+                edit.editTask.saturday = task.saturday;
+            }
+        }
         [self.navigationController pushViewController:edit animated:YES];
     }];
     return @[action, action2];

@@ -12,6 +12,7 @@
 
 @interface AddTaskViewController ()
 @property (nonatomic,strong) NSString *goalName;
+@property (nonatomic, strong) NSString *buttonName;
 @property (nonatomic, strong) NSMutableArray *buttons;
 // Default
 
@@ -43,6 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if (self.editTask) {
+        self.buttonName = self.editTask.goal.name;
         self.textField.text = self.editTask.name;
         self.Sunday.on = self.editTask.sunday;
         self.Monday.on = self.editTask.monday;
@@ -59,6 +61,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     self.editTask = nil;
+    self.editTask.goal = nil;
+    self.editTask.goalName = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -72,11 +76,11 @@
     CGFloat side = 0;
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 120)];
     for (Goal *goal in [GoalController goals]) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 110)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 100)];
         [button setTitle:goal.name forState:UIControlStateNormal];
         button.titleLabel.numberOfLines = 0;
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        if ([self.editTask.goalName isEqualToString: button.titleLabel.text]) {
+        if ([self.editTask.goal.name isEqualToString: button.titleLabel.text]) {
             button.backgroundColor = [UIColor greenColor];
         } else {
             button.backgroundColor = [UIColor whiteColor];
@@ -95,16 +99,13 @@
 }
 
 -(void)goalTapped : (UIButton *)button {
-    if (button.backgroundColor == [UIColor greenColor]) {
-        button.backgroundColor = [UIColor whiteColor];
-    } else {
         for (UIButton *button2 in self.buttons) {
             if (button2.backgroundColor != [UIColor whiteColor]) {
                 button2.backgroundColor = [UIColor whiteColor];
             }
         }
         button.backgroundColor = [UIColor greenColor];
-    }
+        self.buttonName = button.titleLabel.text;
 }
 
 - (IBAction)saveTapped:(id)sender {
@@ -124,7 +125,8 @@
     
 //  Renaming Tasks
     
-    if (self.editTask) {
+    if (self.editTask  && [self.buttonName isEqualToString:self.editTask.goal.name]) {
+        
         [TaskController renameTask:[TaskController getTaskWithName:self.editTask.name] newName:self.textField.text];
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -133,7 +135,7 @@
 //  Creating New Tasks
     
     for (Task *task in [TaskController tasks]) {
-        if ([self.textField.text isEqualToString:task.name]) {
+        if ([task.goal.name isEqualToString: self.buttonName]&& [self.textField.text isEqualToString:task.name]) {
             return;
         }
     }
@@ -169,34 +171,19 @@
 //  Assigning the goal
     
     int i =0;
-    if (self.buttons.count >0) {
-        for (UIButton *button in self.buttons) {
-            i++;
-            if (button.backgroundColor == [UIColor greenColor]) {
-                for (Task *task in [TaskController tasks]) {
-                    if ([task.name isEqualToString: self.textField.text]){
-                        [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
-                        [self.navigationController popViewControllerAnimated:YES];
-                        return;
-                    }
+    for (UIButton *button in self.buttons) {
+        i++;
+        if (button.backgroundColor == [UIColor greenColor]) {
+            for (Task *task in [TaskController tasks]) {
+                if ([task.name isEqualToString: self.textField.text] && !task.goal.name ){
+                    [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
                 }
-            } else if (i == self.buttons.count){
-                for (Task *task in [TaskController tasks]) {
-                    if ([task.name isEqualToString: self.textField.text]){
-                        [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:@""]];
-                        break;
-                    }
-                }
-            }
-        }
-    } else {
-        for (Task *task in [TaskController tasks]) {
-            if ([task.name isEqualToString: self.textField.text]){
-                [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:@""]];
             }
         }
     }
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)dailyChanged:(id)sender {
