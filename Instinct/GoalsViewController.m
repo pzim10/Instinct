@@ -59,10 +59,10 @@
         GoalDetailViewController *detail = segue.destinationViewController;
         detail.goal = [GoalController goalWithName:cell.textLabel.text];
     } else if ([segue.identifier isEqualToString:@"addGoal"]) {
-        AddGoalViewController *add = segue.destinationViewController;
-        add.goal = nil;
-        add.nameField.text = @"";
-        add.notesText.text = @"";
+//        AddGoalViewController *add = segue.destinationViewController;
+//        add.goal = nil;
+//        add.nameField.text = @"";
+//        add.notesText.text = @"";
     }
 }
 

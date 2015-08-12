@@ -12,6 +12,7 @@
 @interface AddGoalViewController : UIViewController
 
 @property (nonatomic, strong) Goal *goal;
+@property (nonatomic, strong) NSString *name;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextView *notesText;

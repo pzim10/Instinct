@@ -20,6 +20,7 @@
     }
     self.goal.name = self.nameField.text;
 //    self.goal.notes = self.notesText.text;
+    [GoalController createGoal:self.nameField.text];
 }
 
 - (void)viewDidLoad {
@@ -28,6 +29,8 @@
     if (self.goal) {
         self.nameField.text = self.goal.name;
 //        self.notesText.text = self.goal.notes;
+    } else {
+        self.name = @"";
     }
 }
 
