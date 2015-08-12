@@ -30,7 +30,7 @@
     self.navigationItem.title = self.goal.name;
     self.image.image = [UIImage imageNamed:@"goals"];
     self.textNotes.text = @"These are my notes \nAren\'t they original!";
-    
+    [self.taskTable reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

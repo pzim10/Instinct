@@ -78,7 +78,13 @@
 }
 
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days{
-//    taskName.daysToPerfomTask = days;
+    taskName.sunday = days[0];
+    taskName.monday = days[1];
+    taskName.tuesday = days[2];
+    taskName.wednesday = days[3];
+    taskName.thursday = days[4];
+    taskName.friday = days[5];
+    taskName.saturday = days[6];
 }
 
 +(void)updateCompletionFromTodayForTask:(Task *)taskName{

@@ -46,13 +46,23 @@
     if (self.editTask) {
         self.buttonName = self.editTask.goal.name;
         self.textField.text = self.editTask.name;
-        self.Sunday.on = self.editTask.sunday;
-        self.Monday.on = self.editTask.monday;
-        self.Tuesday.on = self.editTask.tuesday;
-        self.Wednesday.on = self.editTask.wednesday;
-        self.Thursday.on = self.editTask.thursday;
-        self.Friday.on = self.editTask.friday;
-        self.Saturday.on = self.editTask.saturday;
+        
+        if ([self.editTask.sunday isEqual: @1]) {
+            self.Sunday.on = NO;
+        } if ([self.editTask.monday isEqual: @1]) {
+            self.Monday.on = NO;
+        } if ([self.editTask.tuesday isEqual: @1]) {
+            self.Tuesday.on = NO;
+        } if ([self.editTask.wednesday isEqual: @1]) {
+            self.Wednesday.on = NO;
+        } if ([self.editTask.thursday isEqual: @1]) {
+            self.Thursday.on = NO;
+        } if ([self.editTask.friday isEqual: @1]) {
+            self.Friday.on = NO;
+        } if ([self.editTask.saturday isEqual:@1]) {
+            self.Saturday.on = NO;
+        }
+        
         self.custom.on = YES;
         self.daily.on = NO;
         self.weekdays.on = NO;
@@ -72,6 +82,16 @@
     NSMutableArray *labels = [NSMutableArray arrayWithObjects:self.Su, self.M, self.Tu, self.W, self.Th, self.F, self.Sa, nil];
     self.buttons = [NSMutableArray new];
     self.labels = labels;
+    
+    if (self.editTask) {
+        for (UILabel *label in labels) {
+            label.hidden = NO;
+        }
+        for (UISwitch *day in switches) {
+            day.hidden = NO;
+        }
+    }
+    
     int i = 0;
     CGFloat side = 0;
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 120)];
@@ -131,6 +151,9 @@
         Goal *goal = [GoalController goalWithName:self.editTask.goal.name];
         for (Task* task in goal.tasks) {
             if ([task.name isEqualToString:self.editTask.name]) {
+                NSArray *days = [self daysArray];
+                [TaskController changeDaysToCompleteForTask:task daysToComplete:days];
+                
                 [TaskController renameTask:task newName:self.textField.text];
                 [self.navigationController popViewControllerAnimated:YES];
                 return;
@@ -145,11 +168,34 @@
             return;
         }
     }
+    
+    NSArray *days = [self daysArray];
+    [TaskController createTaskWtihNameAndDays:self.textField.text arrayOfDays:days];
+    
+//  Assigning the goal
+    
+    int i =0;
+    for (UIButton *button in self.buttons) {
+        i++;
+        if (button.backgroundColor == [UIColor greenColor]) {
+            for (Task *task in [TaskController tasks]) {
+                if ([task.name isEqualToString: self.textField.text] && !task.goal.name ){
+                    [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+            }
+        }
+    }
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(NSArray *)daysArray {
     NSMutableArray *days = [NSMutableArray new];
     if (self.daily.on) {
         for (UISwitch *switches in self.switches) {
-                switches.on = YES;
-                [days addObject:@0];
+            switches.on = YES;
+            [days addObject:@0];
         }
     } else if (self.weekdays.on) {
         int i = 0;
@@ -171,25 +217,7 @@
             }
         }
     }
-    
-    [TaskController createTaskWtihNameAndDays:self.textField.text arrayOfDays:days];
-    
-//  Assigning the goal
-    
-    int i =0;
-    for (UIButton *button in self.buttons) {
-        i++;
-        if (button.backgroundColor == [UIColor greenColor]) {
-            for (Task *task in [TaskController tasks]) {
-                if ([task.name isEqualToString: self.textField.text] && !task.goal.name ){
-                    [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-            }
-        }
-    }
-//    [self.navigationController popViewControllerAnimated:YES];
+    return days;
 }
 
 - (IBAction)dailyChanged:(id)sender {
