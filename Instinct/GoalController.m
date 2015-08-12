@@ -97,25 +97,13 @@
             [TaskController removeTask:task];
         }
     }
-    task.goal = nil;
-    task.name = nil;
-    task.goalName = nil;
-    task.complete = nil;
-    task.completedYesterday = nil;
-    task.consecutiveDaysCompleted = nil;
-    task.daysCompleted = nil;
-    task.daysUntilComplete = nil;
-    task.sunday = nil;
-    task.monday = nil;
-    task.tuesday = nil;
-    task.wednesday = nil;
-    task.thursday = nil;
-    task.friday = nil;
-    task.saturday = nil;
     [self save];
 }
 
 +(void)removeGoal:(Goal *)goal {
+    for (Task *task in goal.tasks) {
+        [TaskController removeTask:task];
+    }
     [goal.managedObjectContext deleteObject:goal];
     [self save];
 }

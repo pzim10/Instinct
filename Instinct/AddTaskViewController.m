@@ -109,6 +109,8 @@
 }
 
 - (IBAction)saveTapped:(id)sender {
+    // Check if a name exists, check if goal is highlighted
+    
     if ([self.textField.text isEqualToString:@""] || self.textField.text == nil) {
         return;
     } else {
@@ -126,10 +128,14 @@
 //  Renaming Tasks
     
     if (self.editTask  && [self.buttonName isEqualToString:self.editTask.goal.name]) {
-        
-        [TaskController renameTask:[TaskController getTaskWithName:self.editTask.name] newName:self.textField.text];
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
+        Goal *goal = [GoalController goalWithName:self.editTask.goal.name];
+        for (Task* task in goal.tasks) {
+            if ([task.name isEqualToString:self.editTask.name]) {
+                [TaskController renameTask:task newName:self.textField.text];
+                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
+        }
     }
     
 //  Creating New Tasks

@@ -7,6 +7,7 @@
 //
 
 #import "TaskController.h"
+#import "GoalController.h"
 
 @implementation TaskController
 
@@ -37,13 +38,6 @@
     [self save];
 }
 
-//- (Task *)createTaskWithName:(NSString *)name {
-//    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-//    task.name = name;
-//    
-//    return task;
-//}
-
 + (NSArray *)tasks {
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
@@ -73,7 +67,14 @@
 }
 
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName{
+    Goal *goal = taskName.goal;
+    for (Task *task in goal.tasks) {
+        if ([task.name isEqualToString:newName]) {
+            return;
+        }
+    }
     taskName.name = newName;
+    [self save];
 }
 
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days{
