@@ -34,43 +34,43 @@
 //  Turn today string into an array index
     if ([today isEqualToString:@"Sunday"]) {
         for (Task *task in tasks) {
-            if ([task.sunday isEqual: @0]) {
+            if ([task.sunday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Monday"]) {
         for (Task *task in tasks) {
-            if ([task.monday isEqual: @0]) {
+            if ([task.monday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Tuesday"]) {
         for (Task *task in tasks) {
-            if ([task.tuesday isEqual: @0]) {
+            if ([task.tuesday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Wednesday"]) {
         for (Task *task in tasks) {
-            if ([task.wednesday isEqual: @0]) {
+            if ([task.wednesday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Thursday"]) {
         for (Task *task in tasks) {
-            if ([task.thursday isEqual: @0]) {
+            if ([task.thursday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Friday"]) {
         for (Task *task in tasks) {
-            if ([task.friday isEqual: @0]) {
+            if ([task.friday isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }
     } else if ([today isEqualToString:@"Saturday"]) {
         for (Task *task in tasks) {
-            if ([task.saturday  isEqual: @0]) {
+            if ([task.saturday  isEqual: @0] && [task.complete isEqual:@1]) {
                 [todaysTasks addObject:task];
             }
         }

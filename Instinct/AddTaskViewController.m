@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *buttonName;
 @property (nonatomic, strong) NSMutableArray *buttons;
 // Default
+@property (weak, nonatomic) IBOutlet UILabel *addOrEdit;
 
 @property (weak, nonatomic) IBOutlet UISwitch *daily;
 @property (weak, nonatomic) IBOutlet UISwitch *weekdays;
@@ -46,6 +47,7 @@
     if (self.editTask) {
         self.buttonName = self.editTask.goal.name;
         self.textField.text = self.editTask.name;
+        self.addOrEdit.text = @"(Tapping on a new goal will copy this task to the new goal)";
         
         if ([self.editTask.sunday isEqual: @1]) {
             self.Sunday.on = NO;

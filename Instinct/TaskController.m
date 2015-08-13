@@ -24,6 +24,10 @@
 +(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days{
     Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newTask.name = name;
+    newTask.complete = @1;
+    newTask.completedYesterday = @1;
+    newTask.consecutiveDaysCompleted = @0;
+    newTask.daysCompleted = @0;
     newTask.daysUntilComplete = @66;
     newTask.sunday = days[0];
     newTask.monday = days[1];
@@ -32,8 +36,6 @@
     newTask.thursday = days[4];
     newTask.friday = days[5];
     newTask.saturday = days[6];
-
-    newTask.daysCompleted = @0;
     
     [self save];
 }
@@ -94,8 +96,13 @@
         NSLog(@"Success");
     }
 }
-+(void)updateDaysCompleted: (BOOL) complete forTask:(Task *)taskName{
-//    taskName.daysCompleted++;
++(void)updateDaysCompletedForTask:(Task *)taskName{
+    taskName.complete = @0;
+    int value = [taskName.daysCompleted intValue];
+    taskName.daysCompleted = [NSNumber numberWithInt:value + 1];
+    
+    value = [taskName.daysUntilComplete intValue];
+    taskName.daysUntilComplete = [NSNumber numberWithInt:value -1];
 }
 +(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName{
     if (taskName.complete && taskName.completedYesterday) {

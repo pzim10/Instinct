@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
 @property (weak, nonatomic) IBOutlet UITextView *quoteLabel;
 
+@property (nonatomic, strong) NSMutableArray *switches;
+@property (nonatomic, strong) UISwitch *taskCompletion;
+
 @end
 
 @implementation TodayViewController
@@ -28,16 +31,11 @@
     self.quoteLabel.text = @"I want to succeed.\nI can succeed.\nSo I will succeed!";
     self.quoteLabel.textAlignment = NSTextAlignmentCenter;
     self.todayLabel.text = [TodayController getToday];
+    self.switches = [NSMutableArray new];
     [self.taskTable reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-}
-
--(void)taskCompleted: (UILabel *)label {
-    Task *task = [TaskController getTaskWithName:label.text];
-    
-    task.complete = @0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -46,6 +44,14 @@
     for (Task *task in [TodayController getTasksForToday]) {
         if (i == indexPath.row) {
             cell.textLabel.text = task.name;
+            UISwitch *complete = [[UISwitch alloc] initWithFrame:CGRectMake(tableView.frame.size.width - 60, 5, 0, 0)];
+            complete.tag = indexPath.row;
+            complete.hidden = YES;
+            [self.switches addObject:complete];
+            
+            [complete addTarget:self action:@selector(taskCompleted:) forControlEvents:UIControlEventValueChanged];
+            [cell addSubview:complete];
+            return cell;
         }
         i++;
     }
@@ -54,6 +60,27 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [TodayController getTasksForToday].count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.taskCompletion.hidden = YES;
+    self.taskCompletion = self.switches[indexPath.row];
+    self.taskCompletion.hidden = NO;
+}
+
+-(void)taskCompleted: (UISwitch *)sender{
+    int i =0;
+    for (Task *task in [TodayController getTasksForToday]) {
+        if (i == sender.tag) {
+            [TaskController updateDaysCompletedForTask:task];
+        }
+        i++;
+    }
+    [self.switches removeObject:sender];
+    sender.on = NO;
+    sender.hidden = YES;
+    [self viewWillAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning {

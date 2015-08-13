@@ -12,8 +12,7 @@
 
 // graph for progress
 +(Summary *)sharedInstance;
-@property (nonatomic, strong) NSArray *daysCounter;
-// [0] Days toward goal, [1] till next rank, [2] current consecutive days, [3] most consecutive days, [4] consecutive tasks, [5] total tasks
+// [0] Days toward goal, [1] till next rank, [2] current consecutive days, [3] most consecutive days, [4] consecutive tasks, [5] most consecutive tasks, [6]total tasks
 @property (nonatomic, strong) NSArray *summaryTitle;
 
 @property (nonatomic, strong) NSArray *rank;

@@ -76,10 +76,18 @@
                                 <rect key="frame" x="16" y="101" width="568" height="254"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="task" id="dOI-i8-svw">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="task" textLabel="jXx-1s-YsC" style="IBUITableViewCellStyleDefault" id="dOI-i8-svw">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dOI-i8-svw" id="bSx-21-VW7">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXx-1s-YsC">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -554,6 +562,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="Vru-ee-cz9" id="2ed-RG-UDa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxh-vZ-HjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,10 +695,10 @@
                                     <action selector="weekdaysChanged:" destination="ZdT-Vo-s2w" eventType="valueChanged" id="PS1-bc-3bL"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(add task to goal by tapping on goal)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmo-MU-CIZ">
-                                <rect key="frame" x="175" y="180" width="250" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(add task to goal by tapping on goal)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmo-MU-CIZ">
+                                <rect key="frame" x="175" y="180" width="250" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="UYm-GN-03E"/>
+                                    <constraint firstAttribute="height" constant="40" id="UYm-GN-03E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -821,7 +832,7 @@
                             <constraint firstItem="cez-MW-c4a" firstAttribute="trailing" secondItem="zz8-q0-di3" secondAttribute="trailing" id="rfM-Yy-Fep"/>
                             <constraint firstItem="5ms-Bk-2vl" firstAttribute="baseline" secondItem="qzM-ic-btj" secondAttribute="baseline" id="uHu-4E-o1S"/>
                             <constraint firstItem="Rmo-MU-CIZ" firstAttribute="leading" secondItem="qyU-l7-uLi" secondAttribute="leading" id="uK2-Iq-tgT"/>
-                            <constraint firstItem="qyU-l7-uLi" firstAttribute="top" secondItem="Rmo-MU-CIZ" secondAttribute="bottom" constant="30" id="vJE-p3-CEE"/>
+                            <constraint firstItem="qyU-l7-uLi" firstAttribute="top" secondItem="Rmo-MU-CIZ" secondAttribute="bottom" constant="11" id="vJE-p3-CEE"/>
                             <constraint firstItem="5ms-Bk-2vl" firstAttribute="leading" secondItem="n4w-16-HoS" secondAttribute="leading" id="wSw-y1-oMk"/>
                         </constraints>
                     </view>
@@ -848,6 +859,7 @@
                         <outlet property="Tuesday" destination="Dtw-fz-4A1" id="fYR-7g-lfG"/>
                         <outlet property="W" destination="cez-MW-c4a" id="zJh-Cs-Pf4"/>
                         <outlet property="Wednesday" destination="J2H-gB-JO0" id="eo0-uS-nDQ"/>
+                        <outlet property="addOrEdit" destination="Rmo-MU-CIZ" id="VGx-5j-dPJ"/>
                         <outlet property="custom" destination="bLx-Pz-COi" id="weG-66-dFn"/>
                         <outlet property="daily" destination="XK0-Og-8kJ" id="x5p-j7-OjD"/>
                         <outlet property="textField" destination="qyU-l7-uLi" id="tCc-hj-0sZ"/>

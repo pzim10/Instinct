@@ -11,8 +11,13 @@
 
 @interface SummaryController : NSObject
 
-+(int)getDaysCounterforIndex :(NSInteger) dayIndex;
-+(NSArray *)getDaysArray;
++(int)getDaysCompleted;
++(int)getDaysUntilCompleted;
++(int)getCurrentConsecutiveDays;
++(int)getMostConsecutiveDays;
++(int)getConsecutiveTasks;
++(int)getMostConsecutiveTasks;
++(int)getTotalTasks;
 
 +(NSString *)getSummaryTitleforIndex :(NSInteger) titleIndex;
 +(NSArray *)getSummaryTitlesArray;

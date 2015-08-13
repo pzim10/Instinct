@@ -7,15 +7,47 @@
 //
 
 #import "SummaryController.h"
+#import "TaskController.h"
 
 @implementation SummaryController
 
-+(int)getDaysCounterforIndex :(NSInteger) dayIndex{
-    return (int)[Summary sharedInstance].daysCounter[dayIndex];
++(int)getDaysCompleted {
+    // Update daily
+    return 0;
 }
 
-+(NSArray *)getDaysArray{
-    return [Summary sharedInstance].daysCounter;
++(int)getDaysUntilCompleted {
+    // Update daily
+    return 0;
+}
+
++(int)getCurrentConsecutiveDays{
+    // Update daily
+    return 0;
+}
+
++(int)getMostConsecutiveDays{
+    // Update when over written
+    return 0;
+}
+
++(int)getConsecutiveTasks{
+    // Update continuosly
+    return 0;
+}
+
++(int)getMostConsecutiveTasks{
+    // Update when over written
+    return 0;
+}
+
++(int)getTotalTasks{
+    // update continuosly
+    int total =0;
+    for (Task *task in [TaskController tasks]) {
+        total += [task.daysCompleted intValue];
+    }
+    return total;
 }
 
 +(NSString *)getSummaryTitleforIndex:(NSInteger)titleIndex{
