@@ -23,14 +23,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.textNotes.bounds = [self heightForDescription:self.textNotes.text];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.taskTable.center.y + self.taskTable.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2);
     self.navigationItem.title = self.goal.name;
     self.image.image = [UIImage imageNamed:@"goals"];
     self.textNotes.text = @"These are my notes \nAren\'t they original!";
     [self.taskTable reloadData];
+}
+
+- (CGRect)heightForDescription:(NSString *)description {
+    
+    CGRect bounding = [description boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 2 * 15, CGFLOAT_MAX)
+                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
+                                                context:nil];
+    
+    return bounding;
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

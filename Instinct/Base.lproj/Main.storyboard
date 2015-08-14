@@ -145,7 +145,7 @@
         <!--Add Goal-->
         <scene sceneID="zzY-5M-GR9">
             <objects>
-                <viewController title="Add Goal" id="pMc-eE-9bT" customClass="AddGoalViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddGoalViewController" title="Add Goal" id="pMc-eE-9bT" customClass="AddGoalViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UVI-c7-kWZ"/>
                         <viewControllerLayoutGuide type="bottom" id="T1l-b3-Z4f"/>
@@ -190,11 +190,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Use this space to elaborate on what your goal is along with why and how you will achieve it." translatesAutoresizingMaskIntoConstraints="NO" id="4gh-GG-JEs">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add notes about this goal here" translatesAutoresizingMaskIntoConstraints="NO" id="4gh-GG-JEs">
                                 <rect key="frame" x="16" y="350" width="493" height="133"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pMc-eE-9bT" id="TmL-tu-dTh"/>
+                                </connections>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hwt-JN-Qbr">
                                 <rect key="frame" x="16" y="168" width="240" height="128"/>
@@ -221,7 +225,7 @@
                                     <segue destination="lJU-S3-gMx" kind="show" identifier="goalIdeas" id="G3f-7V-U2g"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push yourself and share your results with these goals!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1R-gl-nFp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These goals require practice" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1R-gl-nFp">
                                 <rect key="frame" x="123" y="495" width="450" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -238,16 +242,27 @@
                                     <action selector="nameChanged:" destination="pMc-eE-9bT" eventType="editingChanged" id="R9c-YV-Tcg"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/180" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rI-vy-rhb">
+                                <rect key="frame" x="89" y="304" width="75" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Aao-m3-sxD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="b2h-wz-JcC" firstAttribute="leading" secondItem="JLp-ky-W9Z" secondAttribute="leading" id="2Qs-Ke-DPj"/>
                             <constraint firstItem="ZM5-ir-xKZ" firstAttribute="leading" secondItem="pQg-bR-Vku" secondAttribute="trailing" constant="8" symbolic="YES" id="9c7-PO-ac7"/>
                             <constraint firstItem="b2h-wz-JcC" firstAttribute="leading" secondItem="k47-bi-4ZB" secondAttribute="leading" id="9uU-eS-0eI"/>
+                            <constraint firstItem="2rI-vy-rhb" firstAttribute="baseline" secondItem="GSV-Hn-PbN" secondAttribute="baseline" id="AEI-pV-9Os"/>
                             <constraint firstItem="Z1R-gl-nFp" firstAttribute="leading" secondItem="xuy-R9-acD" secondAttribute="trailing" constant="8" symbolic="YES" id="Axe-e7-AgK"/>
                             <constraint firstItem="JLp-ky-W9Z" firstAttribute="top" secondItem="UVI-c7-kWZ" secondAttribute="bottom" constant="8" symbolic="YES" id="C3L-3w-52n"/>
                             <constraint firstItem="xuy-R9-acD" firstAttribute="trailing" secondItem="k47-bi-4ZB" secondAttribute="trailing" id="CDi-op-Msg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Z1R-gl-nFp" secondAttribute="trailing" constant="11" id="CHV-9s-p1q"/>
+                            <constraint firstItem="2rI-vy-rhb" firstAttribute="leading" secondItem="GSV-Hn-PbN" secondAttribute="trailing" constant="21" id="Dzn-F4-Y7t"/>
                             <constraint firstItem="T1l-b3-Z4f" firstAttribute="top" secondItem="4gh-GG-JEs" secondAttribute="bottom" constant="73" id="GgA-gP-gYR"/>
                             <constraint firstItem="k47-bi-4ZB" firstAttribute="top" secondItem="b2h-wz-JcC" secondAttribute="bottom" constant="8" symbolic="YES" id="IJr-ZE-Lg1"/>
                             <constraint firstItem="k47-bi-4ZB" firstAttribute="baseline" secondItem="pQg-bR-Vku" secondAttribute="baseline" id="M3N-50-fsb"/>
@@ -279,6 +294,7 @@
                     <connections>
                         <outlet property="nameField" destination="b2h-wz-JcC" id="xtY-a0-hcE"/>
                         <outlet property="notesText" destination="4gh-GG-JEs" id="kZa-Wa-jmp"/>
+                        <outlet property="textCount" destination="2rI-vy-rhb" id="DjV-W9-FOS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0o-uR-jBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,7 +342,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wN8-IR-ud4">
                             <connections>
-                                <segue destination="ZdT-Vo-s2w" kind="show" id="ycs-aM-10Z"/>
+                                <segue destination="pMc-eE-9bT" kind="show" identifier="goalDetail" id="r8B-0U-pse"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -370,7 +386,7 @@
         <!--Goal Ideas2VC-->
         <scene sceneID="TzT-Q2-8G9">
             <objects>
-                <tableViewController id="try-nn-TGP" customClass="GoalIdeas2VC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GoalIdeas2VC" id="try-nn-TGP" customClass="GoalIdeas2VC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jcn-rR-69i">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,9 +397,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SuS-Ek-nvA" id="AKE-f8-Xx5">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="pMc-eE-9bT" kind="show" identifier="add" id="AM5-Rl-gEW"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -436,10 +449,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bQU-jT-r3N">
-                                        <rect key="frame" x="8" y="304" width="584" height="300"/>
+                                        <rect key="frame" x="8" y="304" width="584" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="kgZ-y2-0Re"/>
+                                            <constraint firstAttribute="height" constant="200" id="kgZ-y2-0Re"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="goal" id="hFR-Vs-RuU">
@@ -553,11 +566,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="zOH-Q5-65j">
                             <connections>
                                 <segue destination="2Dr-gZ-Jw9" kind="show" id="Bk4-2p-Yz3"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8fz-OP-qHY">
-                            <connections>
-                                <segue destination="ZdT-Vo-s2w" kind="show" id="k8D-MU-7fX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

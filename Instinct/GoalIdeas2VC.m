@@ -27,12 +27,20 @@
     return [TableViewData myKeys:self.ideaIndex].count + 1;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    AddGoalViewController *add = segue.destinationViewController;
+    AddGoalViewController *add = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddGoalViewController class])];
+    
+    NSArray* vcs = self.navigationController.viewControllers;
+    add = [vcs objectAtIndex:([vcs count] - 1) - 2];
     add.name = cell.textLabel.text;
+    add.nameField.text = cell.textLabel.text;
+    
+    add.taskName = @"Practice";
+    
+    add.navigationItem.title = @"Add Goal";
+    [self.navigationController popToViewController:add animated:YES];
 }
 
 @end

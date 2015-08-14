@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "GoalController.h"
+#import "TaskController.h"
 
-@interface AddGoalViewController : UIViewController <UITextFieldDelegate>
+@interface AddGoalViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) Task *task;
+@property (nonatomic, strong) NSString *taskName;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextView *notesText;
