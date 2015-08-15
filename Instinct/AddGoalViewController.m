@@ -30,7 +30,7 @@ static NSString *const placeHolder= @"Add notes about this goal here";
             [GoalController createGoal:self.nameField.text];
             NSArray *days = @[@0, @0, @0, @0, @0, @0,@0];
             self.taskName = [NSString stringWithFormat:@"%@ %@", self.taskName, self.nameField.text];
-            [TaskController createTaskWtihNameAndDays:self.taskName arrayOfDays:days];
+            [TaskController createTaskWtihNameAndDaysOrDeadline:self.taskName arrayOfDays:days deadline:nil];
             
             for (Goal *goal in [GoalController goals]) {
                 if ([goal.name isEqualToString:self.nameField.text]) {

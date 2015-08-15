@@ -12,7 +12,7 @@
 @class Goal;
 
 @interface Task : NSManagedObject
-
+// @property (nonatomic, retain) NSDate * deadline;
 @property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSNumber * completedYesterday;
 @property (nonatomic, retain) NSNumber * consecutiveDaysCompleted;

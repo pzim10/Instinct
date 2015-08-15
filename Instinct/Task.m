@@ -11,7 +11,7 @@
 
 
 @implementation Task
-
+// @dynamic deadline;
 @dynamic complete;
 @dynamic completedYesterday;
 @dynamic consecutiveDaysCompleted;

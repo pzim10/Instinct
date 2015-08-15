@@ -11,6 +11,7 @@
 #import "GoalController.h"
 
 @interface AddTaskViewController ()
+@property (weak, nonatomic) IBOutlet UIDatePicker *taskDeadline;
 @property (nonatomic,strong) NSString *goalName;
 @property (nonatomic, strong) NSString *buttonName;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -18,8 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *addOrEdit;
 
 @property (weak, nonatomic) IBOutlet UISwitch *daily;
-@property (weak, nonatomic) IBOutlet UISwitch *weekdays;
 @property (weak, nonatomic) IBOutlet UISwitch *custom;
+@property (weak, nonatomic) IBOutlet UISwitch *deadline;
 // Custom Switches
 @property (weak, nonatomic) IBOutlet UISwitch *Sunday;
 @property (weak, nonatomic) IBOutlet UISwitch *Monday;
@@ -44,6 +45,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    if (self.editTask.deadline) {
+//        self.deadline.on = YES;
+//        self.taskDeadline.hidden = NO;
+//    self.taskDeadline.date = self.editTask.dedline;
+//    } else
     if (self.editTask) {
         self.buttonName = self.editTask.goal.name;
         self.textField.text = self.editTask.name;
@@ -67,7 +73,7 @@
         
         self.custom.on = YES;
         self.daily.on = NO;
-        self.weekdays.on = NO;
+        self.deadline.on = NO;
     }
 }
 
@@ -94,11 +100,16 @@
         }
     }
     
+    // DatePicker
+    self.taskDeadline.minimumDate = [NSDate date];
+    
+    // Goals
+    
     int i = 0;
     CGFloat side = 0;
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 120)];
     for (Goal *goal in [GoalController goals]) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 100)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20 + 180*i, 5, 125, 75)];
         [button setTitle:goal.name forState:UIControlStateNormal];
         button.titleLabel.numberOfLines = 0;
         [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -172,7 +183,7 @@
     }
     
     NSArray *days = [self daysArray];
-    [TaskController createTaskWtihNameAndDays:self.textField.text arrayOfDays:days];
+    [TaskController createTaskWtihNameAndDaysOrDeadline:self.textField.text arrayOfDays:days deadline:self.taskDeadline.date];
     
 //  Assigning the goal
     
@@ -199,17 +210,8 @@
             switches.on = YES;
             [days addObject:@0];
         }
-    } else if (self.weekdays.on) {
-        int i = 0;
-        for (UISwitch *switches in self.switches) {
-            if (i < 6 && i != 0) {
-                switches.on = YES;
-                [days addObject:@0];
-            } else {
-                switches.on = NO;
-                [days addObject:@1];
-            }i++;
-        }
+    } else if (self.deadline.on) {
+        days = nil;
     } else if (self.custom.on) {
         for (UISwitch *switches in self.switches) {
             if (switches.on) {
@@ -224,7 +226,8 @@
 
 - (IBAction)dailyChanged:(id)sender {
     if (self.daily.on) {
-        self.weekdays.on = NO;
+        self.taskDeadline.hidden = YES;
+        self.deadline.on = NO;
         if (self.custom.on) {
             self.custom.on = NO;
             for (UISwitch *switches in self.switches) {
@@ -236,8 +239,8 @@
         }
     }
 }
-- (IBAction)weekdaysChanged:(id)sender {
-    if (self.weekdays.on) {
+- (IBAction)deadlineChanged:(id)sender {
+    if (self.deadline.on) {
         self.daily.on = NO;
         if (self.custom.on) {
             self.custom.on = NO;
@@ -248,13 +251,16 @@
                 labels.hidden = YES;
             }
         }
-
+        self.taskDeadline.hidden = NO;
+    }else{
+        self.taskDeadline.hidden = YES;
     }
 }
 - (IBAction)customChanged:(id)sender {
     if (self.custom.on) {
         self.daily.on = NO;
-        self.weekdays.on = NO;
+        self.deadline.on = NO;
+        self.taskDeadline.hidden = YES;
         
         for (UISwitch *switches in self.switches) {
             switches.hidden = NO;

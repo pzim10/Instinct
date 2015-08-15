@@ -14,5 +14,7 @@
 
 @dynamic name;
 @dynamic tasks;
+// @dynamic notes;
+// @dynamic visualGoal;
 
 @end

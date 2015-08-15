@@ -45,10 +45,10 @@
     return fetchedObjects;
 }
 
-+(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName{
-    Goal *newGoal = [Goal new];
++(void)createGoalWithTitleNotesAndImage:(NSString *)name notes:(NSString *)notes imageNamed:(NSString *)imageName{
+    Goal *newGoal = [NSEntityDescription insertNewObjectForEntityForName:@"Goal" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newGoal.name = name;
-
+//  newGoal.notes = notes;
 //    newGoal.visualGoal = [UIImage imageNamed:imageName];
 }
 

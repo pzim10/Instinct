@@ -16,7 +16,7 @@
 
 +(TaskController *)sharedTask;
 
-+(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days;
++(void)createTaskWtihNameAndDaysOrDeadline: (NSString *)name arrayOfDays:(NSArray *) days deadline:(NSDate *)deadline;
 //- (Task *)createTaskWithName:(NSString *)name;
 +(Task *)getTaskWithName: (NSString *)name;
 + (NSArray *)tasks;

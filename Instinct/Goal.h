@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *tasks;
+//@property (nonatomic, retain) NSString * notes;
+//@property (nonatomic, retain) UIImage * visualGoal;
 @end
 
 @interface Goal (CoreDataGeneratedAccessors)

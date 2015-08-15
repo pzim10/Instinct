@@ -21,7 +21,8 @@
     return sharedTask;
 }
 
-+(void)createTaskWtihNameAndDays: (NSString *)name arrayOfDays:(NSArray *) days{
++(void)createTaskWtihNameAndDaysOrDeadline: (NSString *)name arrayOfDays:(NSArray *) days deadline:(NSDate *)deadline{
+    
     Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newTask.name = name;
     newTask.complete = @1;
@@ -29,14 +30,17 @@
     newTask.consecutiveDaysCompleted = @0;
     newTask.daysCompleted = @0;
     newTask.daysUntilComplete = @66;
-    newTask.sunday = days[0];
-    newTask.monday = days[1];
-    newTask.tuesday = days[2];
-    newTask.wednesday = days[3];
-    newTask.thursday = days[4];
-    newTask.friday = days[5];
-    newTask.saturday = days[6];
-    
+    if (days) {
+        newTask.sunday = days[0];
+        newTask.monday = days[1];
+        newTask.tuesday = days[2];
+        newTask.wednesday = days[3];
+        newTask.thursday = days[4];
+        newTask.friday = days[5];
+        newTask.saturday = days[6];
+//    } else {
+//        newTask.deadline = deadline;
+    }
     [self save];
 }
 
