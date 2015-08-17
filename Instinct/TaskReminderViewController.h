@@ -11,7 +11,7 @@
 #import "AddTaskViewController.h"
 #import "TaskController.h"
 
-@interface EditTaskViewController : UIViewController
+@interface TaskReminderViewController : UIViewController
 
 @property (nonatomic, strong) Task *task;
 

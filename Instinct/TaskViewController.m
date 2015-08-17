@@ -9,7 +9,7 @@
 #import "TaskViewController.h"
 #import "GoalController.h"
 #import "AddTaskViewController.h"
-#import "EditTaskViewController.h"
+#import "TaskReminderViewController.h"
 
 
 @interface TaskViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -71,7 +71,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    EditTaskViewController *edit = segue.destinationViewController;
+    TaskReminderViewController *edit = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     Goal *goal = [GoalController goals][indexPath.section];

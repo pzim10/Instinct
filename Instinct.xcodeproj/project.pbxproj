@@ -15,7 +15,7 @@
 		285496331B75482500AFE16C /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496321B75482500AFE16C /* Goal.m */; };
 		285496361B75482600AFE16C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496351B75482600AFE16C /* Task.m */; };
 		289A62761B827B8100B6C89D /* Quotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62751B827B8100B6C89D /* Quotes.m */; };
-		289A62791B8299F900B6C89D /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62781B8299F900B6C89D /* EditTaskViewController.m */; };
+		289A62791B8299F900B6C89D /* TaskReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62781B8299F900B6C89D /* TaskReminderViewController.m */; };
 		28EB477C1B6C09C9005F9AD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477B1B6C09C9005F9AD2 /* main.m */; };
 		28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477E1B6C09C9005F9AD2 /* AppDelegate.m */; };
 		28EB478B1B6C09C9005F9AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28EB47891B6C09C9005F9AD2 /* Main.storyboard */; };
@@ -68,8 +68,8 @@
 		285496351B75482600AFE16C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		289A62741B827B8100B6C89D /* Quotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quotes.h; sourceTree = "<group>"; };
 		289A62751B827B8100B6C89D /* Quotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quotes.m; sourceTree = "<group>"; };
-		289A62771B8299F900B6C89D /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
-		289A62781B8299F900B6C89D /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
+		289A62771B8299F900B6C89D /* TaskReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskReminderViewController.h; sourceTree = "<group>"; };
+		289A62781B8299F900B6C89D /* TaskReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskReminderViewController.m; sourceTree = "<group>"; };
 		28EB47761B6C09C9005F9AD2 /* Instinct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instinct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EB477A1B6C09C9005F9AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28EB477B1B6C09C9005F9AD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,6 +147,34 @@
 				28EB47DA1B6C5B65005F9AD2 /* SummaryViewController.m */,
 			);
 			name = "Tab bar views";
+			sourceTree = "<group>";
+		};
+		289A627A1B82A75C00B6C89D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				289A62771B8299F900B6C89D /* TaskReminderViewController.h */,
+				289A62781B8299F900B6C89D /* TaskReminderViewController.m */,
+				28EB47A81B6C18E4005F9AD2 /* SettingsViewController.h */,
+				28EB47A91B6C18E4005F9AD2 /* SettingsViewController.m */,
+				283D9FA71B768D0B00CCE9AF /* GoalDetailViewController.h */,
+				283D9FA81B768D0B00CCE9AF /* GoalDetailViewController.m */,
+				283D9FB01B7963F400CCE9AF /* GoalIdeasViewController.h */,
+				283D9FB11B7963F400CCE9AF /* GoalIdeasViewController.m */,
+				283D9FB31B79641C00CCE9AF /* GoalIdeas2VC.h */,
+				283D9FB41B79641C00CCE9AF /* GoalIdeas2VC.m */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		289A627B1B82A76C00B6C89D /* Add/Edit */ = {
+			isa = PBXGroup;
+			children = (
+				28EB47A51B6C1579005F9AD2 /* AddTaskViewController.h */,
+				28EB47A61B6C1579005F9AD2 /* AddTaskViewController.m */,
+				283D9FA41B768BFD00CCE9AF /* AddGoalViewController.h */,
+				283D9FA51B768BFD00CCE9AF /* AddGoalViewController.m */,
+			);
+			name = Add/Edit;
 			sourceTree = "<group>";
 		};
 		28EB476D1B6C09C9005F9AD2 = {
@@ -263,20 +291,8 @@
 		28EB48201B6DA3D9005F9AD2 /* Support pages */ = {
 			isa = PBXGroup;
 			children = (
-				289A62771B8299F900B6C89D /* EditTaskViewController.h */,
-				289A62781B8299F900B6C89D /* EditTaskViewController.m */,
-				28EB47A51B6C1579005F9AD2 /* AddTaskViewController.h */,
-				28EB47A61B6C1579005F9AD2 /* AddTaskViewController.m */,
-				28EB47A81B6C18E4005F9AD2 /* SettingsViewController.h */,
-				28EB47A91B6C18E4005F9AD2 /* SettingsViewController.m */,
-				283D9FA41B768BFD00CCE9AF /* AddGoalViewController.h */,
-				283D9FA51B768BFD00CCE9AF /* AddGoalViewController.m */,
-				283D9FA71B768D0B00CCE9AF /* GoalDetailViewController.h */,
-				283D9FA81B768D0B00CCE9AF /* GoalDetailViewController.m */,
-				283D9FB01B7963F400CCE9AF /* GoalIdeasViewController.h */,
-				283D9FB11B7963F400CCE9AF /* GoalIdeasViewController.m */,
-				283D9FB31B79641C00CCE9AF /* GoalIdeas2VC.h */,
-				283D9FB41B79641C00CCE9AF /* GoalIdeas2VC.m */,
+				289A627B1B82A76C00B6C89D /* Add/Edit */,
+				289A627A1B82A75C00B6C89D /* Detail */,
 			);
 			name = "Support pages";
 			sourceTree = "<group>";
@@ -394,7 +410,7 @@
 				28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */,
 				28F96E371B721363009CF483 /* Stack.m in Sources */,
 				283D9FA91B768D0B00CCE9AF /* GoalDetailViewController.m in Sources */,
-				289A62791B8299F900B6C89D /* EditTaskViewController.m in Sources */,
+				289A62791B8299F900B6C89D /* TaskReminderViewController.m in Sources */,
 				283D9FAF1B795F0700CCE9AF /* TableViewData.m in Sources */,
 				28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */,
 				28EB47D51B6C5B57005F9AD2 /* GoalsViewController.m in Sources */,

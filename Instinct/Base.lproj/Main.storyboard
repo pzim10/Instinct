@@ -641,10 +641,10 @@
             </objects>
             <point key="canvasLocation" x="1267" y="171"/>
         </scene>
-        <!--Edit Task View Controller-->
+        <!--Task Reminder View Controller-->
         <scene sceneID="PBq-eW-mrS">
             <objects>
-                <viewController id="HVg-9o-m7A" customClass="EditTaskViewController" sceneMemberID="viewController">
+                <viewController id="HVg-9o-m7A" customClass="TaskReminderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uW4-qQ-Hxi"/>
                         <viewControllerLayoutGuide type="bottom" id="cfs-jR-1Zl"/>
@@ -653,18 +653,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="m1n-hQ-Ffi">
-                                <rect key="frame" x="0.0" y="219" width="600" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="461543687.770863">
-                                    <!--2015-08-17 22:34:47 +0000-->
-                                </date>
-                            </datePicker>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cij-nr-087">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reminder" id="edU-Cy-tzE">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="edU-Cy-tzE" id="Svg-ly-7kt">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addReminder" id="jsm-Pk-yUw">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jsm-Pk-yUw" id="KUK-k9-BfQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HVg-9o-m7A" id="NCo-vH-abn"/>
+                                    <outlet property="delegate" destination="HVg-9o-m7A" id="6Vm-Xh-FFx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="m1n-hQ-Ffi" secondAttribute="trailing" id="1hn-sZ-nyT"/>
-                            <constraint firstItem="m1n-hQ-Ffi" firstAttribute="leading" secondItem="Oeh-4Q-P71" secondAttribute="leading" id="VXC-7r-wzT"/>
-                            <constraint firstItem="m1n-hQ-Ffi" firstAttribute="centerY" secondItem="Oeh-4Q-P71" secondAttribute="centerY" id="Y8g-aF-LIw"/>
+                            <constraint firstAttribute="trailing" secondItem="Cij-nr-087" secondAttribute="trailing" id="4SX-ec-fE2"/>
+                            <constraint firstItem="Cij-nr-087" firstAttribute="leading" secondItem="Oeh-4Q-P71" secondAttribute="leading" id="Bav-Xe-Vb7"/>
+                            <constraint firstItem="Cij-nr-087" firstAttribute="top" secondItem="Oeh-4Q-P71" secondAttribute="top" id="KmB-KQ-3q2"/>
+                            <constraint firstAttribute="bottom" secondItem="Cij-nr-087" secondAttribute="bottom" id="u8h-Er-6pz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3OW-L8-5jK">
@@ -674,6 +691,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Cij-nr-087" id="8kp-cw-7QB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V77-5t-vRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
