@@ -38,8 +38,8 @@
         newTask.thursday = days[4];
         newTask.friday = days[5];
         newTask.saturday = days[6];
-//    } else {
-//        newTask.deadline = deadline;
+    } else {
+        newTask.deadline = deadline;
     }
     [self save];
 }
@@ -93,13 +93,6 @@
     taskName.saturday = days[6];
 }
 
-+(void)updateCompletionFromTodayForTask:(Task *)taskName{
-//    taskName.daysUntilComplete--;
-    if (taskName.daysUntilComplete == 0) {
-        // Send out notification of success! perhaps even an awesome success view!
-        NSLog(@"Success");
-    }
-}
 +(void)updateDaysCompletedForTask:(Task *)taskName{
     taskName.complete = @0;
     int value = [taskName.daysCompleted intValue];
@@ -107,12 +100,13 @@
     
     value = [taskName.daysUntilComplete intValue];
     taskName.daysUntilComplete = [NSNumber numberWithInt:value -1];
-}
-+(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName{
+    
     if (taskName.complete && taskName.completedYesterday) {
-//        taskName.consecutiveDaysCompleted++;
+        //        taskName.consecutiveDaysCompleted++;
     }
 }
+
+// Delete
 
 + (void)removeTask:(Task *)task {
     [task.managedObjectContext deleteObject:task];

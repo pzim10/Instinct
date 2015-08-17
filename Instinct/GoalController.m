@@ -9,6 +9,8 @@
 #import "GoalController.h"
 #import "TaskController.h"
 
+static NSString *imageKey = @"imageKey";
+
 @interface GoalController ()
 
 @property (strong, nonatomic) NSArray *goals;
@@ -28,14 +30,6 @@
 
 // Create a new goal
 
-+(void)createGoal:(NSString *)name{
-    Goal *newGoal = [NSEntityDescription insertNewObjectForEntityForName:@"Goal" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-    
-    newGoal.name = name;
-    
-    [self save];
-}
-
 + (NSArray *)goals {
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Goal"];
@@ -48,11 +42,12 @@
 +(void)createGoalWithTitleNotesAndImage:(NSString *)name notes:(NSString *)notes imageNamed:(NSString *)imageName{
     Goal *newGoal = [NSEntityDescription insertNewObjectForEntityForName:@"Goal" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newGoal.name = name;
-//  newGoal.notes = notes;
-//    newGoal.visualGoal = [UIImage imageNamed:imageName];
+    newGoal.notes = notes;
+    newGoal.visualGoalPath = imageName;
+    
+    [self save];
 }
 
-// Load the goals
 - (Goal *)createGoalWithName:(NSString *)name {
     
     Goal *goal = [NSEntityDescription insertNewObjectForEntityForName:@"Goals" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
@@ -106,6 +101,21 @@
     }
     [goal.managedObjectContext deleteObject:goal];
     [self save];
+}
+
+#pragma mark Write to file Helper
+
++ (NSString *)pathToFile : (NSString *)goalPath {
+    //Creating a file path:
+    //1) Search for the app's documents directory (copy+paste from Documentation)
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //2) Create the full file path by appending the desired file name
+    NSString *pathToFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.plist", goalPath]];
+    
+    return pathToFile;
 }
 
 @end

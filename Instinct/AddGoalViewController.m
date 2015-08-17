@@ -10,10 +10,13 @@
 
 static NSString *const placeHolder= @"Add notes about this goal here";
 
-@interface AddGoalViewController ()
+@interface AddGoalViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *visualGoal;
 @property (weak, nonatomic) IBOutlet UILabel *textCount;
 @property (nonatomic, strong) NSString *maxLength;
 @property (nonatomic, assign) BOOL firstTouch;
+@property (weak, nonatomic) IBOutlet UIButton *goalIdeas;
+@property (weak, nonatomic) IBOutlet UILabel *goalIdeaslabel;
 
 @end
 
@@ -21,17 +24,42 @@ static NSString *const placeHolder= @"Add notes about this goal here";
 
 - (IBAction)saveTapped:(id)sender {
     if ([self.nameField.text isEqualToString:@""]) {
+        // Goal can't exist without a name
         return;
+    }else if (self.goal){
+        // goal is being edited
+        self.goal.name = self.nameField.text;               // Edit goal name
+        self.goal.notes = self.notesText.text;              // Edit goal notes
+        if (self.imageName) {
+            // IF the image has changed
+            self.goal.visualGoalPath = self.imageName;
+            NSData *image = UIImageJPEGRepresentation(self.visualGoal.image, .8);
+            [image writeToFile:[GoalController pathToFile:self.imageName] atomically:YES];
+        }
+        [GoalController save];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
     } else if (self.taskName){
+        // A special goal is being created
         Goal *check = [GoalController goalWithName:self.nameField.text];
         if (check) {
-            self.goal.name = self.name;
+            // can't create two goals with the same name
+            return;
         } else {
-            [GoalController createGoal:self.nameField.text];
+            // Create special goal
+            [GoalController createGoalWithTitleNotesAndImage:self.nameField.text notes:self.notesText.text imageNamed:self.imageName];
+            if (self.imageName) {
+                // If an image was selected from the imagePicker, save it to file
+                NSData *image = UIImageJPEGRepresentation(self.visualGoal.image, .8);
+                [image writeToFile:[GoalController pathToFile:self.imageName] atomically:YES];
+            }
+            
+            // Create the goals pre-defined tasks here
             NSArray *days = @[@0, @0, @0, @0, @0, @0,@0];
             self.taskName = [NSString stringWithFormat:@"%@ %@", self.taskName, self.nameField.text];
             [TaskController createTaskWtihNameAndDaysOrDeadline:self.taskName arrayOfDays:days deadline:nil];
             
+            // assign that task to the goal that was just created
             for (Goal *goal in [GoalController goals]) {
                 if ([goal.name isEqualToString:self.nameField.text]) {
                     for (Task *task in [TaskController tasks]) {
@@ -40,20 +68,71 @@ static NSString *const placeHolder= @"Add notes about this goal here";
                             break;
                         }
                     }
-
                 }
             }
         }
         [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
+        // No editing, create a new custom goal
         Goal *check = [GoalController goalWithName:self.goal.name];
         if (check) {
+            // Can't create two goals with the same name
             self.goal.name = self.name;
         } else {
-            [GoalController createGoal:self.nameField.text];
+            // If the name isn't take then create a new goal with that name
+            [GoalController createGoalWithTitleNotesAndImage:self.nameField.text notes:self.notesText.text imageNamed:self.imageName];
+            if (self.imageName) {
+            // if an image was selected from the imagePicker, save it to file
+                NSData *image = UIImageJPEGRepresentation(self.visualGoal.image, .8);
+                [image writeToFile:[GoalController pathToFile:self.imageName] atomically:YES];
+            }
         }
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)cameraTapped:(id)sender {
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel"destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Choose From Library", nil];
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [popupQuery showInView:self.view];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1) {
+        
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        picker.allowsEditing=TRUE;
+        [self.navigationController presentViewController:picker animated:YES completion:nil];
+        
+    } else if (buttonIndex == 0) {
+        
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIImagePickerController * picker = [UIImagePickerController new];
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            picker.allowsEditing=TRUE;
+            [self.navigationController presentViewController:picker animated:YES completion:nil];
+        }
+        else {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Can not find Camera Device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+    
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    // Assing the image thumbnail to the selected image
+    self.visualGoal.image = image;
+    // Name the image for use in writing to file
+    self.imageName = [NSString stringWithFormat:@"%@Test", self.nameField.text];
 }
 
 - (void)viewDidLoad {
@@ -63,20 +142,27 @@ static NSString *const placeHolder= @"Add notes about this goal here";
     self.notesText.textColor = [UIColor lightGrayColor];
     // Do any additional setup after loading the view.
     if (self.goal) {
+        // Goal is being edited
+        self.goalIdeas.hidden = YES;
+        self.goalIdeaslabel.hidden = YES;
+        
         self.nameField.text = self.goal.name;
         self.name = self.goal.name;
-    } else if (self.name || self.nameField) {
-        self.nameField.text = self.name;
-//        self.notesText.text = self.goal.notes;
+        self.maxLength = self.goal.notes;
+        self.firstTouch = TRUE;
+        self.notesText.text = self.goal.notes;
+        self.notesText.textColor = [UIColor blackColor];
+        
+        if (self.goal.visualGoalPath) {
+            // If an image is associated with this Goal then load that image here
+            self.visualGoal.image = [UIImage imageWithContentsOfFile:[GoalController pathToFile:self.goal.visualGoalPath]];
+        }
+   
     } else {
+        // Default add Goal screen
         self.name = @"";
         self.nameField.text = @"";
     }
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    self.taskName = nil;
-    self.goal = nil;
 }
 
 - (IBAction)nameChanged:(id)sender {
@@ -90,6 +176,7 @@ static NSString *const placeHolder= @"Add notes about this goal here";
 
 -(void)textViewDidChangeSelection:(UITextView *)textView{
     if (!self.firstTouch) {
+        // Clear the text if this is the first time editing in the textView
         self.notesText.text = @"";
         self.firstTouch = TRUE;
     } else if (self.notesText.text.length == 0) {

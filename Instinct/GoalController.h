@@ -17,18 +17,20 @@
 
 +(GoalController *)sharedGoal;
 
-+(void)createGoal:(NSString *)name;
-//+(void)createGoalWithTitleAndImage:(NSString *)name imageNamed:(NSString *)imageName;
++(void)createGoalWithTitleNotesAndImage:(NSString *)name notes:(NSString *)notes imageNamed:(NSString *)imageName;
 + (NSArray *)goals;
 
 +(Goal *)goalWithName: (NSString *)goalName;
 +(NSString *)goalTitle: (Goal*) goal;
-//+(NSArray *)goalTasks: (Goal*) goal;
 
 +(void)save;
 +(void)addTasktoGoal:(Task *)task forGoal: (Goal *)goal;
 +(void)removeTaskFromGoal:(Task *)task fromGoal: (Goal *)goal;
 
 +(void)removeGoal:(Goal *)goal;
+
+// Aux
+
++ (NSString *)pathToFile: (NSString *) goalPath;
 
 @end

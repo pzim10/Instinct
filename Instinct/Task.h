@@ -2,7 +2,7 @@
 //  Task.h
 //  Instinct
 //
-//  Created by Peter Zimmerman on 8/7/15.
+//  Created by Peter Zimmerman on 8/15/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 @class Goal;
 
 @interface Task : NSManagedObject
-// @property (nonatomic, retain) NSDate * deadline;
+
 @property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSNumber * completedYesterday;
 @property (nonatomic, retain) NSNumber * consecutiveDaysCompleted;
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSNumber * thursday;
 @property (nonatomic, retain) NSNumber * tuesday;
 @property (nonatomic, retain) NSNumber * wednesday;
+@property (nonatomic, retain) NSDate * deadline;
 @property (nonatomic, retain) Goal *goal;
 
 @end

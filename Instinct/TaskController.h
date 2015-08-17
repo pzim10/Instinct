@@ -17,16 +17,14 @@
 +(TaskController *)sharedTask;
 
 +(void)createTaskWtihNameAndDaysOrDeadline: (NSString *)name arrayOfDays:(NSArray *) days deadline:(NSDate *)deadline;
-//- (Task *)createTaskWithName:(NSString *)name;
+
 +(Task *)getTaskWithName: (NSString *)name;
 + (NSArray *)tasks;
 
-//+(void)save;
++(void)save;
 +(void)renameTask:(Task *)taskName newName: (NSString *)newName;
 +(void)changeDaysToCompleteForTask:(Task *)taskName daysToComplete:(NSArray *)days;
-+(void)updateCompletionFromTodayForTask:(Task *)taskName;
 +(void)updateDaysCompletedForTask:(Task *)taskName;
-+(void)updateConsecutiveDaysCompletedForTask:(Task *)taskName;
 
 +(void)removeTask:(Task *)task;
 

@@ -19,7 +19,6 @@
     } else {
         cell.textLabel.text = @"Other";
     }
-    [cell setAccessoryType: UITableViewCellAccessoryCheckmark];
     return  cell;
 }
 

@@ -2,7 +2,7 @@
 //  Goal.h
 //  Instinct
 //
-//  Created by Peter Zimmerman on 8/7/15.
+//  Created by Peter Zimmerman on 8/15/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
@@ -14,9 +14,9 @@
 @interface Goal : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * visualGoalPath;
+@property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSSet *tasks;
-//@property (nonatomic, retain) NSString * notes;
-//@property (nonatomic, retain) UIImage * visualGoal;
 @end
 
 @interface Goal (CoreDataGeneratedAccessors)

@@ -9,6 +9,7 @@
 #import "TaskViewController.h"
 #import "GoalController.h"
 #import "AddTaskViewController.h"
+#import "EditTaskViewController.h"
 
 
 @interface TaskViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -41,48 +42,45 @@
         }
         i++;
     }
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 
 
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // remove object from task array;
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        Goal *goal = [GoalController goals][indexPath.section];
-        for (Task *task in goal.tasks) {
-            if ([task.name isEqualToString:cell.textLabel.text]) {
-                [GoalController removeTaskFromGoal:task fromGoal:goal];
-                break;
-            }
-        }
-        [self viewWillAppear:YES];
-
-    }];
-    UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction *action2, NSIndexPath *indexPath) {
-//         get correct object and update it
-        AddTaskViewController *edit = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddTaskViewController class])];
+        // Confirm
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deleting this task will change your goal progress." message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
         
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        Goal *goal = [GoalController goals][indexPath.section];
-        for (Task *task in goal.tasks) {
-            if ([task.name isEqualToString:cell.textLabel.text]) {
-                edit.editTask = task;
-                edit.editTask.goal = task.goal;
-                edit.editTask.goalName = task.goal.name;
-                edit.textField.text = task.name;
-                edit.editTask.sunday = task.sunday;
-                edit.editTask.monday = task.monday;
-                edit.editTask.tuesday = task.tuesday;
-                edit.editTask.wednesday = task.wednesday;
-                edit.editTask.thursday = task.thursday;
-                edit.editTask.friday = task.friday;
-                edit.editTask.saturday = task.saturday;
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            // remove object from task array;
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            Goal *goal = [GoalController goals][indexPath.section];
+            for (Task *task in goal.tasks) {
+                if ([task.name isEqualToString:cell.textLabel.text]) {
+                    [GoalController removeTaskFromGoal:task fromGoal:goal];
+                    break;
+                }
             }
-        }
-        [self.navigationController pushViewController:edit animated:YES];
+            [self viewWillAppear:YES];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
-    return @[action, action2];
+    return @[action];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    EditTaskViewController *edit = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    Goal *goal = [GoalController goals][indexPath.section];
+    for (Task *task in goal.tasks) {
+        if ([task.name isEqualToString:cell.textLabel.text]) {
+            edit.task = task;
+        }
+    }
+    edit.navigationItem.title = cell.textLabel.text;
 }
 
 -(void) animateTableCellForEditing: (UITableViewCell *) cell fromTableView:(UITableView *)tableView {
@@ -129,14 +127,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

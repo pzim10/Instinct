@@ -64,12 +64,19 @@
 
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // remove object from task array;
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        Goal *goal = [GoalController goalWithName:cell.textLabel.text];
-        [GoalController removeGoal:goal];
-        [self viewWillAppear:YES];
+        // Confirm deletion
         
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Deleting this goal will delete its tasks as well." message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            // remove object from task array;
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            Goal *goal = [GoalController goalWithName:cell.textLabel.text];
+            [GoalController removeGoal:goal];
+            [self viewWillAppear:YES];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
     return @[action];
 }

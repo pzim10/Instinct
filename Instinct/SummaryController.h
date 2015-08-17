@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Summary.h"
+#import "GoalController.h"
+#import "TaskController.h"
 
 @interface SummaryController : NSObject
 

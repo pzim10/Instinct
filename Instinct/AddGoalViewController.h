@@ -17,6 +17,7 @@
 @property (nonatomic, strong) Task *task;
 @property (nonatomic, strong) NSString *taskName;
 
+@property (strong, nonatomic) NSString *imageName;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextView *notesText;
 

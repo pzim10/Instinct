@@ -12,7 +12,7 @@
 @interface GoalDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *textNotes;
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
 
@@ -23,15 +23,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.textNotes.bounds = [self heightForDescription:self.textNotes.text];
-    
+    self.textNotes.frame = [self heightForDescription:self.textNotes.text];
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.taskTable.center.y + self.taskTable.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.navigationItem.title = self.goal.name;
-    self.image.image = [UIImage imageNamed:@"goals"];
-    self.textNotes.text = @"These are my notes \nAren\'t they original!";
+    if (self.goal) {
+        self.navigationItem.title = self.goal.name;
+        self.textNotes.text = self.goal.notes;
+        self.textNotes.numberOfLines = 0;
+        if (self.goal.visualGoalPath) {
+            self.imageView.image = [UIImage imageWithContentsOfFile:[GoalController pathToFile:self.goal.visualGoalPath]];
+        }
+    }
     [self.taskTable reloadData];
 }
 

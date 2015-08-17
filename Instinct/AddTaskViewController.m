@@ -45,12 +45,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    if (self.editTask.deadline) {
-//        self.deadline.on = YES;
-//        self.taskDeadline.hidden = NO;
-//    self.taskDeadline.date = self.editTask.dedline;
-//    } else
-    if (self.editTask) {
+    if (self.editTask.deadline) {
+        self.deadline.on = YES;
+        self.taskDeadline.hidden = NO;
+        self.taskDeadline.date = self.editTask.deadline;
+        self.taskDeadline.minimumDate = [NSDate date];
+        
+        self.textField.text = self.editTask.name;
+        self.addOrEdit.text = @"(Tapping on a new goal will copy this task to the new goal)";
+        self.deadline.on = YES;
+        self.daily.on = NO;
+        self.custom.on = NO;
+        
+    } else if (self.editTask) {
         self.buttonName = self.editTask.goal.name;
         self.textField.text = self.editTask.name;
         self.addOrEdit.text = @"(Tapping on a new goal will copy this task to the new goal)";
@@ -78,10 +85,6 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    self.editTask = nil;
-    self.editTask.goal = nil;
-    self.editTask.goalName = nil;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -91,7 +94,9 @@
     self.buttons = [NSMutableArray new];
     self.labels = labels;
     
-    if (self.editTask) {
+    if (self.editTask && self.editTask.deadline) {
+        self.taskDeadline.hidden = NO;
+    } else if (self.editTask) {
         for (UILabel *label in labels) {
             label.hidden = NO;
         }
@@ -158,7 +163,7 @@
         }
     }
     
-//  Renaming Tasks
+//  Renaming Tasks, Change days to complete or assign a deadline
     
     if (self.editTask  && [self.buttonName isEqualToString:self.editTask.goal.name]) {
         Goal *goal = [GoalController goalWithName:self.editTask.goal.name];
@@ -166,8 +171,13 @@
             if ([task.name isEqualToString:self.editTask.name]) {
                 NSArray *days = [self daysArray];
                 [TaskController changeDaysToCompleteForTask:task daysToComplete:days];
+                if (!self.taskDeadline.hidden) {
+                    task.deadline = self.taskDeadline.date;
+                }
                 
                 [TaskController renameTask:task newName:self.textField.text];
+                [TaskController save];
+                [GoalController save];
                 [self.navigationController popViewControllerAnimated:YES];
                 return;
             }
@@ -175,12 +185,6 @@
     }
     
 //  Creating New Tasks
-    
-    for (Task *task in [TaskController tasks]) {
-        if ([task.goal.name isEqualToString: self.buttonName]&& [self.textField.text isEqualToString:task.name]) {
-            return;
-        }
-    }
     
     NSArray *days = [self daysArray];
     [TaskController createTaskWtihNameAndDaysOrDeadline:self.textField.text arrayOfDays:days deadline:self.taskDeadline.date];
@@ -195,12 +199,13 @@
                 if ([task.name isEqualToString: self.textField.text] && !task.goal.name ){
                     [GoalController addTasktoGoal:task forGoal:[GoalController goalWithName:button.titleLabel.text]];
                     [self.navigationController popViewControllerAnimated:YES];
+                    [GoalController save];
+                    [TaskController save];
                     return;
                 }
             }
         }
     }
-//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(NSArray *)daysArray {

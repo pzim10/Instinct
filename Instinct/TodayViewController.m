@@ -8,6 +8,8 @@
 
 #import "TodayViewController.h"
 #import "TaskController.h"
+#import "GoalController.h"
+#import "Quotes.h"
 
 @interface TodayViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *todayLabel;
@@ -23,12 +25,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%lu", (unsigned long)[Quotes quotes].count);
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Today";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.quoteLabel.text = @"I want to succeed.\nI can succeed.\nSo I will succeed!";
+    self.quoteLabel.text = [Quotes getQuoteWithAuthor];
     self.quoteLabel.textAlignment = NSTextAlignmentCenter;
     self.todayLabel.text = [TodayController getToday];
     self.switches = [NSMutableArray new];
@@ -77,6 +80,9 @@
         }
         i++;
     }
+    [TaskController save];
+    [GoalController save];
+    
     [self.switches removeObject:sender];
     sender.on = NO;
     sender.hidden = YES;

@@ -14,6 +14,8 @@
 		283D9FB51B79641C00CCE9AF /* GoalIdeas2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FB41B79641C00CCE9AF /* GoalIdeas2VC.m */; };
 		285496331B75482500AFE16C /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496321B75482500AFE16C /* Goal.m */; };
 		285496361B75482600AFE16C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496351B75482600AFE16C /* Task.m */; };
+		289A62761B827B8100B6C89D /* Quotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62751B827B8100B6C89D /* Quotes.m */; };
+		289A62791B8299F900B6C89D /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62781B8299F900B6C89D /* EditTaskViewController.m */; };
 		28EB477C1B6C09C9005F9AD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477B1B6C09C9005F9AD2 /* main.m */; };
 		28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477E1B6C09C9005F9AD2 /* AppDelegate.m */; };
 		28EB478B1B6C09C9005F9AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28EB47891B6C09C9005F9AD2 /* Main.storyboard */; };
@@ -64,6 +66,10 @@
 		285496321B75482500AFE16C /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		285496341B75482600AFE16C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		285496351B75482600AFE16C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		289A62741B827B8100B6C89D /* Quotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quotes.h; sourceTree = "<group>"; };
+		289A62751B827B8100B6C89D /* Quotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quotes.m; sourceTree = "<group>"; };
+		289A62771B8299F900B6C89D /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
+		289A62781B8299F900B6C89D /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		28EB47761B6C09C9005F9AD2 /* Instinct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instinct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28EB477A1B6C09C9005F9AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28EB477B1B6C09C9005F9AD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,6 +178,8 @@
 				28F96E381B721389009CF483 /* Model.xcdatamodeld */,
 				283D9FAD1B795F0700CCE9AF /* TableViewData.h */,
 				283D9FAE1B795F0700CCE9AF /* TableViewData.m */,
+				289A62741B827B8100B6C89D /* Quotes.h */,
+				289A62751B827B8100B6C89D /* Quotes.m */,
 				28EB47B91B6C46C3005F9AD2 /* View */,
 				28EB47B71B6C4664005F9AD2 /* Model */,
 				28EB47BA1B6C46E6005F9AD2 /* Controllers */,
@@ -255,6 +263,8 @@
 		28EB48201B6DA3D9005F9AD2 /* Support pages */ = {
 			isa = PBXGroup;
 			children = (
+				289A62771B8299F900B6C89D /* EditTaskViewController.h */,
+				289A62781B8299F900B6C89D /* EditTaskViewController.m */,
 				28EB47A51B6C1579005F9AD2 /* AddTaskViewController.h */,
 				28EB47A61B6C1579005F9AD2 /* AddTaskViewController.m */,
 				28EB47A81B6C18E4005F9AD2 /* SettingsViewController.h */,
@@ -384,6 +394,7 @@
 				28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */,
 				28F96E371B721363009CF483 /* Stack.m in Sources */,
 				283D9FA91B768D0B00CCE9AF /* GoalDetailViewController.m in Sources */,
+				289A62791B8299F900B6C89D /* EditTaskViewController.m in Sources */,
 				283D9FAF1B795F0700CCE9AF /* TableViewData.m in Sources */,
 				28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */,
 				28EB47D51B6C5B57005F9AD2 /* GoalsViewController.m in Sources */,
@@ -396,6 +407,7 @@
 				283D9FB21B7963F400CCE9AF /* GoalIdeasViewController.m in Sources */,
 				28EB47CC1B6C5B17005F9AD2 /* TodayController.m in Sources */,
 				28EB47AD1B6C19BF005F9AD2 /* Settings.m in Sources */,
+				289A62761B827B8100B6C89D /* Quotes.m in Sources */,
 				28EB47AA1B6C18E4005F9AD2 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

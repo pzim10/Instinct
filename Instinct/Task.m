@@ -2,7 +2,7 @@
 //  Task.m
 //  Instinct
 //
-//  Created by Peter Zimmerman on 8/7/15.
+//  Created by Peter Zimmerman on 8/15/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 
 @implementation Task
-// @dynamic deadline;
+
 @dynamic complete;
 @dynamic completedYesterday;
 @dynamic consecutiveDaysCompleted;
@@ -26,6 +26,7 @@
 @dynamic thursday;
 @dynamic tuesday;
 @dynamic wednesday;
+@dynamic deadline;
 @dynamic goal;
 
 @end
