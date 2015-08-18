@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Stack.h"
-#import "Goal.h"
+#import "GoalController.h"
+#import "GoalsViewController.h"
+#import "FirstGoalViewController.h"
 
 
 @interface AppDelegate ()
@@ -20,6 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    if ([GoalController goals]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"firstGoal"];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
+    } else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
+    }
     return YES;
 }
 

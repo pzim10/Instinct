@@ -7,6 +7,7 @@
 //
 
 #import "AddGoalViewController.h"
+#import "GoalsViewController.h"
 
 static NSString *const placeHolder= @"Add notes about this goal here";
 
@@ -17,6 +18,7 @@ static NSString *const placeHolder= @"Add notes about this goal here";
 @property (nonatomic, assign) BOOL firstTouch;
 @property (weak, nonatomic) IBOutlet UIButton *goalIdeas;
 @property (weak, nonatomic) IBOutlet UILabel *goalIdeaslabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
 
@@ -71,7 +73,21 @@ static NSString *const placeHolder= @"Add notes about this goal here";
                 }
             }
         }
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if (self.firstGoal) {
+            [self.navigationController pushViewController:[GoalsViewController new] animated:YES];
+        } else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    } else if (self.firstGoal) {
+        // This creates the first goal only
+        [GoalController createGoalWithTitleNotesAndImage:self.nameField.text notes:self.notesText.text imageNamed:self.imageName];
+        if (self.imageName) {
+            // if an image was selected from the imagePicker, save it to file
+            NSData *image = UIImageJPEGRepresentation(self.visualGoal.image, .8);
+            [image writeToFile:[GoalController pathToFile:self.imageName] atomically:YES];
+        }
+        [self.navigationController pushViewController:[GoalsViewController new] animated:YES];
+   
     } else {
         // No editing, create a new custom goal
         Goal *check = [GoalController goalWithName:self.goal.name];
@@ -91,7 +107,7 @@ static NSString *const placeHolder= @"Add notes about this goal here";
     }
 }
 
-- (IBAction)cameraTapped:(id)sender {
+- (void)cameraTapped:(id)sender {
     UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel"destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Choose From Library", nil];
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [popupQuery showInView:self.view];
@@ -163,8 +179,9 @@ static NSString *const placeHolder= @"Add notes about this goal here";
         self.name = @"";
         self.nameField.text = @"";
     }
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(cameraTapped:)];
+    self.navigationItem.rightBarButtonItems = @[self.saveButton, barButton];
 }
-
 - (IBAction)nameChanged:(id)sender {
     self.name = self.nameField.text;
 }

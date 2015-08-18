@@ -7,6 +7,7 @@
 //
 
 #import "TaskReminderViewController.h"
+#import "AddReminderViewController.h"
 
 @interface TaskReminderViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -64,30 +65,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
-
-
-
-
-
-
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //         get correct object and update it
-    AddTaskViewController *edit = segue.destinationViewController;
-    edit.editTask = self.task;
-    edit.editTask.goal = self.task.goal;
-    edit.editTask.goalName = self.task.goal.name;
-    edit.textField.text = self.task.name;
-    edit.editTask.sunday = self.task.sunday;
-    edit.editTask.monday = self.task.monday;
-    edit.editTask.tuesday = self.task.tuesday;
-    edit.editTask.wednesday = self.task.wednesday;
-    edit.editTask.thursday = self.task.thursday;
-    edit.editTask.friday = self.task.friday;
-    edit.editTask.saturday = self.task.saturday;
+    if ([segue.identifier isEqualToString:@"edit"]) {
+        AddTaskViewController *edit = segue.destinationViewController;
+        edit.editTask = self.task;
+        edit.textField.text = self.task.name;
+    } else if ([segue.identifier isEqualToString:@"addReminder"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        AddReminderViewController *reminder = segue.destinationViewController;
+        reminder.task = self.task;
+        if (indexPath.section == 0) {
+            reminder.theDay = @"Sunday";
+        } else if (indexPath.section == 1) {
+            reminder.theDay = @"Monday";
+        } else if (indexPath.section == 2) {
+            reminder.theDay = @"Tuesday";
+        } else if (indexPath.section == 3) {
+            reminder.theDay = @"Wednesday";
+        } else if (indexPath.section == 4) {
+            reminder.theDay = @"Thursday";
+        } else if (indexPath.section == 5) {
+            reminder.theDay = @"Friday";
+        } else if (indexPath.section == 6) {
+            reminder.theDay = @"Saturday";
+        }
+
+        reminder.theDay = [NSString stringWithFormat:@"%@s only", reminder.theDay];
+        
+    }
 }
 
 

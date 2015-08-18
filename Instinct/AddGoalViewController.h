@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) Task *task;
 @property (nonatomic, strong) NSString *taskName;
+@property (nonatomic, assign) BOOL firstGoal;
 
 @property (strong, nonatomic) NSString *imageName;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
