@@ -22,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIUserNotificationType types = UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    UIUserNotificationSettings *mySettings =
+    [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     self.daysLabel.text = self.theDay;
 }
 - (IBAction)daysSwitchChanged:(id)sender {
@@ -29,6 +36,39 @@
         self.daysLabel.text = self.theDay;
     }else {
         self.daysLabel.text = @"Task days";
+    }
+}
+
+- (IBAction)saveTapped:(id)sender {
+    UILocalNotification *localNotification = [UILocalNotification new];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatInterval = NSCalendarUnitWeekOfYear;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.alertBody = [NSString stringWithFormat: @"%@", self.task.name];
+    if (self.daysSwitch.on) {
+        if (localNotification) {
+            localNotification.fireDate = self.alarmTimer.date;
+            
+            [UIApplication sharedApplication].applicationIconBadgeNumber = localNotification.applicationIconBadgeNumber +1;
+            [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
+        }
+    } else {
+        NSArray *taskDays = @[
+                              self.task.sunday, self.task.monday, self.task.tuesday,
+                              self.task.wednesday, self.task.thursday, self.task.friday, self.task.saturday,
+                              ];
+        int i =0;
+        for (NSNumber *number in taskDays) {
+            if (localNotification) {
+                if ([number isEqual:@0]) {
+//                    localNotification.fireDate = self.alarmTimer.date + i * NSCalendarUnitDay ;
+
+            [UIApplication sharedApplication].applicationIconBadgeNumber = localNotification.applicationIconBadgeNumber +1;
+                    [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
+                }
+            }
+            i++;
+        }
     }
 }
 

@@ -22,16 +22,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    if ([GoalController goals]){
+    if (![GoalController goals] || [GoalController goals].count == 0){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"firstGoal"];
-        [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
+        UINavigationController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"firstGoalNavigation"];
+        [self.window setRootViewController:rootViewController];
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-        [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
+        [self.window setRootViewController:rootViewController];
     }
+    UILocalNotification *localNotif =
+    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+//        NSString *itemName = [localNotif.userInfo objectForKey:ToDoItemKey];
+//        [viewController displayItem:itemName];  // custom method
+        application.applicationIconBadgeNumber = localNotif.applicationIconBadgeNumber-1;
+    }
+//    [window addSubview:viewController.view];
+//    [window makeKeyAndVisible];
     return YES;
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification {
+//    NSString *itemName = [notif.userInfo objectForKey:ToDoItemKey];
+//    [viewController displayItem:itemName];  // custom method
+    app.applicationIconBadgeNumber = notification.applicationIconBadgeNumber - 1;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

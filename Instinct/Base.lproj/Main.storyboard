@@ -534,42 +534,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstGoal" translatesAutoresizingMaskIntoConstraints="NO" id="BYv-aZ-VrV">
-                                <rect key="frame" x="366" y="72" width="240" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="CYh-Sd-4PU"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xr-0g-Vox">
-                                <rect key="frame" x="360" y="64" width="240" height="123"/>
+                                <rect key="frame" x="180" y="238" width="240" height="123"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="adJ-A8-cl8"/>
+                                    <constraint firstAttribute="width" constant="240" id="xdv-39-Bja"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <state key="normal" title="Get Started!">
-                                    <color key="titleColor" red="0.96665641170000005" green="1" blue="0.15929077119999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="0.13483550380000001" blue="0.081834476389999994" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="pMc-eE-9bT" kind="show" identifier="firstGoal" id="gUU-RY-i38"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goals" translatesAutoresizingMaskIntoConstraints="NO" id="uxh-yR-lXc">
-                                <rect key="frame" x="0.0" y="156" width="600" height="444"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.64236502600000001" blue="0.20581922550000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3Xr-0g-Vox" secondAttribute="trailing" id="8uB-BM-GMD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BYv-aZ-VrV" secondAttribute="trailing" constant="-22" id="AvW-xB-VbF"/>
-                            <constraint firstItem="uxh-yR-lXc" firstAttribute="top" secondItem="stm-q9-n08" secondAttribute="bottom" constant="92" id="B4M-W0-vBZ"/>
-                            <constraint firstItem="uxh-yR-lXc" firstAttribute="bottom" secondItem="l5w-mF-Ck3" secondAttribute="top" id="JQ5-Zo-jL7"/>
-                            <constraint firstItem="l5w-mF-Ck3" firstAttribute="top" secondItem="BYv-aZ-VrV" secondAttribute="bottom" constant="408" id="LeA-HA-bTR"/>
-                            <constraint firstItem="uxh-yR-lXc" firstAttribute="leading" secondItem="4Di-TB-m8o" secondAttribute="leading" id="SWx-52-E8d"/>
-                            <constraint firstItem="3Xr-0g-Vox" firstAttribute="trailing" secondItem="uxh-yR-lXc" secondAttribute="trailing" id="aSm-uJ-rPH"/>
-                            <constraint firstItem="BYv-aZ-VrV" firstAttribute="top" secondItem="stm-q9-n08" secondAttribute="bottom" constant="8" symbolic="YES" id="gJJ-K7-Qoj"/>
-                            <constraint firstItem="3Xr-0g-Vox" firstAttribute="top" secondItem="stm-q9-n08" secondAttribute="bottom" id="nG4-iu-btA"/>
-                            <constraint firstItem="l5w-mF-Ck3" firstAttribute="top" secondItem="3Xr-0g-Vox" secondAttribute="bottom" constant="413" id="zze-XP-U4z"/>
+                            <constraint firstItem="3Xr-0g-Vox" firstAttribute="top" secondItem="stm-q9-n08" secondAttribute="bottom" constant="174" id="MFe-EP-dM7"/>
+                            <constraint firstItem="3Xr-0g-Vox" firstAttribute="centerX" secondItem="4Di-TB-m8o" secondAttribute="centerX" id="gKQ-m3-rji"/>
+                            <constraint firstItem="l5w-mF-Ck3" firstAttribute="top" secondItem="3Xr-0g-Vox" secondAttribute="bottom" constant="239" id="we2-Rd-B0q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PUj-aJ-auh"/>
@@ -825,7 +809,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="b5j-MG-Eqn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2qz-tD-lCz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2qz-tD-lCz">
+                            <connections>
+                                <action selector="saveTapped:" destination="YDB-yU-itr" id="qWc-3c-1eT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="alarmTimer" destination="kJd-7j-C9w" id="sDm-cO-hjq"/>
@@ -1206,10 +1194,6 @@
             <point key="canvasLocation" x="378" y="-1269"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="firstGoal" width="225" height="225"/>
-        <image name="goals" width="1000" height="1000"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bjn-Iq-8KB"/>
         <segue reference="XnI-Oe-bpu"/>

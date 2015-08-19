@@ -74,10 +74,10 @@ static NSString *const placeHolder= @"Add notes about this goal here";
             }
         }
         if (self.firstGoal) {
-            [self.navigationController pushViewController:[GoalsViewController new] animated:YES];
-        } else {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
         }
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } else if (self.firstGoal) {
         // This creates the first goal only
         [GoalController createGoalWithTitleNotesAndImage:self.nameField.text notes:self.notesText.text imageNamed:self.imageName];
@@ -86,8 +86,8 @@ static NSString *const placeHolder= @"Add notes about this goal here";
             NSData *image = UIImageJPEGRepresentation(self.visualGoal.image, .8);
             [image writeToFile:[GoalController pathToFile:self.imageName] atomically:YES];
         }
-        [self.navigationController pushViewController:[GoalsViewController new] animated:YES];
-   
+        UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:rootViewController];
     } else {
         // No editing, create a new custom goal
         Goal *check = [GoalController goalWithName:self.goal.name];
@@ -153,6 +153,9 @@ static NSString *const placeHolder= @"Add notes about this goal here";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.firstGoal) {
+        self.navigationItem.hidesBackButton = YES;
+    }
     self.firstTouch = FALSE;
     self.maxLength = @"";
     self.notesText.textColor = [UIColor lightGrayColor];
