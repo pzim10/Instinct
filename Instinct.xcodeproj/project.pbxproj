@@ -27,9 +27,6 @@
 		28EB47901B6C09C9005F9AD2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28EB478E1B6C09C9005F9AD2 /* LaunchScreen.xib */; };
 		28EB479C1B6C09C9005F9AD2 /* InstinctTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB479B1B6C09C9005F9AD2 /* InstinctTests.m */; };
 		28EB47A71B6C1579005F9AD2 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47A61B6C1579005F9AD2 /* AddTaskViewController.m */; };
-		28EB47AA1B6C18E4005F9AD2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47A91B6C18E4005F9AD2 /* SettingsViewController.m */; };
-		28EB47AD1B6C19BF005F9AD2 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47AC1B6C19BF005F9AD2 /* Settings.m */; };
-		28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47AF1B6C1BB1005F9AD2 /* SettingsController.m */; };
 		28EB47BD1B6C5A54005F9AD2 /* Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47BC1B6C5A54005F9AD2 /* Today.m */; };
 		28EB47C61B6C5AD7005F9AD2 /* Summary.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47C51B6C5AD7005F9AD2 /* Summary.m */; };
 		28EB47C91B6C5B04005F9AD2 /* GoalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB47C81B6C5B04005F9AD2 /* GoalController.m */; };
@@ -95,12 +92,6 @@
 		28EB479B1B6C09C9005F9AD2 /* InstinctTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstinctTests.m; sourceTree = "<group>"; };
 		28EB47A51B6C1579005F9AD2 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
 		28EB47A61B6C1579005F9AD2 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
-		28EB47A81B6C18E4005F9AD2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		28EB47A91B6C18E4005F9AD2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		28EB47AB1B6C19BF005F9AD2 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		28EB47AC1B6C19BF005F9AD2 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
-		28EB47AE1B6C1BB1005F9AD2 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
-		28EB47AF1B6C1BB1005F9AD2 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		28EB47BB1B6C5A54005F9AD2 /* Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Today.h; sourceTree = "<group>"; };
 		28EB47BC1B6C5A54005F9AD2 /* Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Today.m; sourceTree = "<group>"; };
 		28EB47C41B6C5AD7005F9AD2 /* Summary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summary.h; sourceTree = "<group>"; };
@@ -166,8 +157,6 @@
 			children = (
 				289A62771B8299F900B6C89D /* TaskReminderViewController.h */,
 				289A62781B8299F900B6C89D /* TaskReminderViewController.m */,
-				28EB47A81B6C18E4005F9AD2 /* SettingsViewController.h */,
-				28EB47A91B6C18E4005F9AD2 /* SettingsViewController.m */,
 				283D9FA71B768D0B00CCE9AF /* GoalDetailViewController.h */,
 				283D9FA81B768D0B00CCE9AF /* GoalDetailViewController.m */,
 				283D9FB01B7963F400CCE9AF /* GoalIdeasViewController.h */,
@@ -268,8 +257,6 @@
 				285496351B75482600AFE16C /* Task.m */,
 				285496311B75482500AFE16C /* Goal.h */,
 				285496321B75482500AFE16C /* Goal.m */,
-				28EB47AB1B6C19BF005F9AD2 /* Settings.h */,
-				28EB47AC1B6C19BF005F9AD2 /* Settings.m */,
 				28EB47BB1B6C5A54005F9AD2 /* Today.h */,
 				28EB47BC1B6C5A54005F9AD2 /* Today.m */,
 				28EB47C41B6C5AD7005F9AD2 /* Summary.h */,
@@ -294,8 +281,6 @@
 			children = (
 				289A627C1B83CED500B6C89D /* ReminderController.h */,
 				289A627D1B83CED500B6C89D /* ReminderController.m */,
-				28EB47AE1B6C1BB1005F9AD2 /* SettingsController.h */,
-				28EB47AF1B6C1BB1005F9AD2 /* SettingsController.m */,
 				28EB47C71B6C5B04005F9AD2 /* GoalController.h */,
 				28EB47C81B6C5B04005F9AD2 /* GoalController.m */,
 				28EB47CA1B6C5B17005F9AD2 /* TodayController.h */,
@@ -433,7 +418,6 @@
 				283D9FA91B768D0B00CCE9AF /* GoalDetailViewController.m in Sources */,
 				289A62791B8299F900B6C89D /* TaskReminderViewController.m in Sources */,
 				283D9FAF1B795F0700CCE9AF /* TableViewData.m in Sources */,
-				28EB47B01B6C1BB1005F9AD2 /* SettingsController.m in Sources */,
 				28EB47D51B6C5B57005F9AD2 /* GoalsViewController.m in Sources */,
 				28EB477C1B6C09C9005F9AD2 /* main.m in Sources */,
 				289A62871B83EA4F00B6C89D /* FirstGoalViewController.m in Sources */,
@@ -445,10 +429,8 @@
 				28F96E3A1B721389009CF483 /* Model.xcdatamodeld in Sources */,
 				283D9FB21B7963F400CCE9AF /* GoalIdeasViewController.m in Sources */,
 				28EB47CC1B6C5B17005F9AD2 /* TodayController.m in Sources */,
-				28EB47AD1B6C19BF005F9AD2 /* Settings.m in Sources */,
 				289A627E1B83CED500B6C89D /* ReminderController.m in Sources */,
 				289A62761B827B8100B6C89D /* Quotes.m in Sources */,
-				28EB47AA1B6C18E4005F9AD2 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

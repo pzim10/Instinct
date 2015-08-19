@@ -7,52 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Settings View Controller-->
-        <scene sceneID="Hrz-eD-LzS">
-            <objects>
-                <viewController id="2Dr-gZ-Jw9" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="noe-tk-Unr"/>
-                        <viewControllerLayoutGuide type="bottom" id="5cO-Ix-XWd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EKT-Yu-HKg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7FK-4L-H0x">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setting" id="i2t-zg-0c0">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i2t-zg-0c0" id="fJ3-gi-Hte">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="J3X-12-yK3" id="Pba-QH-ndv"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="7FK-4L-H0x" secondAttribute="trailing" id="4Qm-i1-uk9"/>
-                            <constraint firstItem="7FK-4L-H0x" firstAttribute="top" secondItem="EKT-Yu-HKg" secondAttribute="top" id="cLW-OC-uCQ"/>
-                            <constraint firstItem="7FK-4L-H0x" firstAttribute="leading" secondItem="EKT-Yu-HKg" secondAttribute="leading" id="gsh-pI-LJ5"/>
-                            <constraint firstAttribute="bottom" secondItem="7FK-4L-H0x" secondAttribute="bottom" id="kPA-RL-dzq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Cwt-c4-bYk"/>
-                    <connections>
-                        <outlet property="settingsTableView" destination="7FK-4L-H0x" id="lzj-7X-BYl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fHR-UD-C25" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="J3X-12-yK3" customClass="Settings"/>
-            </objects>
-            <point key="canvasLocation" x="541" y="1629"/>
-        </scene>
         <!--Today View Controller-->
         <scene sceneID="Yvi-RQ-NhV">
             <objects>
@@ -120,13 +74,7 @@
                             <constraint firstItem="ZhV-pS-Pku" firstAttribute="centerX" secondItem="zWv-TQ-0nG" secondAttribute="centerX" id="uIG-X8-mWg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tro-Ua-Qdg">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="DiH-na-Hyt">
-                            <connections>
-                                <segue destination="2Dr-gZ-Jw9" kind="show" id="Bjn-Iq-8KB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="tro-Ua-Qdg"/>
                     <connections>
                         <outlet property="quoteLabel" destination="yyO-wV-Pir" id="iop-WA-zfR"/>
                         <outlet property="taskTable" destination="Kbs-ET-DH2" id="7ah-Gc-6yG"/>
@@ -323,11 +271,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="NBE-OR-Zzn">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="qmd-JH-cC1">
-                            <connections>
-                                <segue destination="2Dr-gZ-Jw9" kind="show" id="Gep-Bp-b6h"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wN8-IR-ud4">
                             <connections>
                                 <segue destination="pMc-eE-9bT" kind="show" identifier="addGoalButton" id="r8B-0U-pse"/>
@@ -592,13 +535,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Y1H-1k-YB2">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="zOH-Q5-65j">
-                            <connections>
-                                <segue destination="2Dr-gZ-Jw9" kind="show" id="Bk4-2p-Yz3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Y1H-1k-YB2"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Vru-ee-cz9" id="2ed-RG-UDa"/>
@@ -649,11 +586,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="h01-l4-foE">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="v9r-Pq-1Hi">
-                            <connections>
-                                <segue destination="2Dr-gZ-Jw9" kind="show" id="VUb-zN-OGa"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7bs-zh-6oB">
                             <connections>
                                 <segue destination="ZdT-Vo-s2w" kind="show" id="M99-pD-4Zd"/>
@@ -1195,8 +1127,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Bjn-Iq-8KB"/>
-        <segue reference="XnI-Oe-bpu"/>
-        <segue reference="gUU-RY-i38"/>
+        <segue reference="r8B-0U-pse"/>
+        <segue reference="M99-pD-4Zd"/>
     </inferredMetricsTieBreakers>
 </document>
