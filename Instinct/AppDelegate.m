@@ -36,7 +36,7 @@
     if (localNotif) {
 //        NSString *itemName = [localNotif.userInfo objectForKey:ToDoItemKey];
 //        [viewController displayItem:itemName];  // custom method
-        application.applicationIconBadgeNumber = localNotif.applicationIconBadgeNumber-1;
+        application.applicationIconBadgeNumber -= 1;
     }
 //    [window addSubview:viewController.view];
 //    [window makeKeyAndVisible];
@@ -46,7 +46,7 @@
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification {
 //    NSString *itemName = [notif.userInfo objectForKey:ToDoItemKey];
 //    [viewController displayItem:itemName];  // custom method
-    app.applicationIconBadgeNumber = notification.applicationIconBadgeNumber - 1;
+    app.applicationIconBadgeNumber += 1;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -65,6 +65,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

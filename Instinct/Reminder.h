@@ -10,10 +10,10 @@
 
 @interface Reminder : NSObject
 
-@property (nonatomic, assign) BOOL dayOnly;
-// if false then it is task days, else it is weekly for the specific day
+@property (nonatomic, assign) NSNumber *dayIndex;
+// 0 == task days, 1-7 == Su,M,Tu,W,Th,F,Sa
 @property (nonatomic, strong) NSString *theDay;
-// Either Monday, Tue, etc iff dayOnly == TRUE; else nil;
+// Either Monday, Tue, etc.
 @property (nonatomic, assign) int seconds;
 // Time in seconds the alarm is set at
 

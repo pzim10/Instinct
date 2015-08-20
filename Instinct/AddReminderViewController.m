@@ -7,13 +7,20 @@
 //
 
 #import "AddReminderViewController.h"
+#import "TodayController.h"
+
+static CGFloat oneDayInterval = 86400;
+static CGFloat weekInterval = 604800;
+static NSString const *notificationUserInfoKey = @"UserInfoKey";
 
 @interface AddReminderViewController ()
-@property (weak, nonatomic) IBOutlet UISwitch *daysSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *daysLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIDatePicker *alarmTimer;
 @property (weak, nonatomic) IBOutlet UIButton *vibrateButton;
 @property (weak, nonatomic) IBOutlet UIButton *soundButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *daysControl;
+@property (assign, nonatomic) NSInteger daySelected;
 
 @end
 
@@ -29,47 +36,77 @@
     [UIUserNotificationSettings settingsForTypes:types categories:nil];
     
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    self.daysLabel.text = self.theDay;
+    
+    self.daySelected = [self.daysControl selectedSegmentIndex];
+    [self.daysControl setTitleTextAttributes:@{@"Font":[UIFont systemFontOfSize:12]} forState:UIControlStateNormal];
+    [self.daysControl setTitle:@"Su" forSegmentAtIndex:1];
+    [self.daysControl setTitle:@"M" forSegmentAtIndex:2];
+    [self.daysControl setTitle:@"Tu" forSegmentAtIndex:3];
+    [self.daysControl setTitle:@"W" forSegmentAtIndex:4];
+    [self.daysControl setTitle:@"Th" forSegmentAtIndex:5];
+    [self.daysControl setTitle:@"F" forSegmentAtIndex:6];
+    [self.daysControl setTitle:@"Sa" forSegmentAtIndex:7];
 }
-- (IBAction)daysSwitchChanged:(id)sender {
-    if (self.daysSwitch.on) {
-        self.daysLabel.text = self.theDay;
-    }else {
-        self.daysLabel.text = @"Task days";
-    }
-}
+
 
 - (IBAction)saveTapped:(id)sender {
     UILocalNotification *localNotification = [UILocalNotification new];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatInterval = NSCalendarUnitWeekOfYear;
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     localNotification.alertBody = [NSString stringWithFormat: @"%@", self.task.name];
-    if (self.daysSwitch.on) {
-        if (localNotification) {
-            localNotification.fireDate = self.alarmTimer.date;
-            
-            [UIApplication sharedApplication].applicationIconBadgeNumber = localNotification.applicationIconBadgeNumber +1;
-            [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
-        }
-    } else {
+    
+    int count = (int)[UIApplication sharedApplication].scheduledLocalNotifications.count;
+    localNotification.userInfo = @{notificationUserInfoKey : [NSString stringWithFormat:@"%d", count]};
+    
+    NSString *today = [TodayController getToday];
+    int i = 0;
+    if ([today isEqualToString:@"Sunday"]) {
+        i = 0;
+    } else if ([today isEqualToString:@"Monday"]) {
+        i = 1;
+    } else if ([today isEqualToString:@"Tuesday"]) {
+        i = 2;
+    } else if ([today isEqualToString:@"Wednesday"]) {
+        i = 3;
+    } else if ([today isEqualToString:@"Thursday"]) {
+        i = 4;
+    } else if ([today isEqualToString:@"Friday"]) {
+        i = 5;
+    } else if ([today isEqualToString:@"Saturday"]) {
+        i = 6;
+    }
+
+    if (self.daysControl.selectedSegmentIndex == 0) {
+        NSDate *begin = [self.alarmTimer.date dateByAddingTimeInterval: (-i *oneDayInterval)];
+        
         NSArray *taskDays = @[
                               self.task.sunday, self.task.monday, self.task.tuesday,
                               self.task.wednesday, self.task.thursday, self.task.friday, self.task.saturday,
                               ];
-        int i =0;
+        i = 0;
         for (NSNumber *number in taskDays) {
             if (localNotification) {
                 if ([number isEqual:@0]) {
-//                    localNotification.fireDate = self.alarmTimer.date + i * NSCalendarUnitDay ;
-
-            [UIApplication sharedApplication].applicationIconBadgeNumber = localNotification.applicationIconBadgeNumber +1;
+                    localNotification.fireDate = [begin dateByAddingTimeInterval:oneDayInterval *i];
+                    localNotification.repeatInterval = weekInterval;
+                    NSLog(@"%@", localNotification.fireDate);
+            [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
                     [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
                 }
             }
             i++;
         }
+    } else {
+        i = (int)self.daysControl.selectedSegmentIndex - (i + 1);
+        NSDate *begin = [self.alarmTimer.date dateByAddingTimeInterval: (i *oneDayInterval)];
+        
+        localNotification.fireDate = begin;
+        localNotification.repeatInterval = weekInterval;
+        NSLog(@"%@", localNotification.fireDate);
+        [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
+        [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

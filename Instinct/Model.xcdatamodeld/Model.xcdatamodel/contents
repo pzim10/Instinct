@@ -7,7 +7,7 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="goal" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Reminder" syncable="YES">
-        <attribute name="dayOnly" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dayIndex" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="seconds" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="theDay" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="reminders" inverseEntity="Task" syncable="YES"/>
@@ -33,7 +33,7 @@
     </entity>
     <elements>
         <element name="Goal" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Task" positionX="0" positionY="0" width="128" height="300"/>
         <element name="Reminder" positionX="9" positionY="126" width="128" height="105"/>
+        <element name="Task" positionX="0" positionY="0" width="128" height="300"/>
     </elements>
 </model>

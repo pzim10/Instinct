@@ -11,6 +11,8 @@
 
 @interface TaskReminderViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addReminder;
+@property (strong, nonatomic) UIBarButtonItem *editTask;
 
 @end
 
@@ -21,17 +23,14 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.editTask = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editSegueProgrammatically)];
+    self.navigationItem.rightBarButtonItems = @[self.addReminder, self.editTask];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section]-1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"addReminder"];
-        cell.textLabel.text = @"Add Reminder";
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"reminder"];
-        cell.textLabel.text = [NSString stringWithFormat:@"Reminder %ld", indexPath.row];
-    }
+    cell = [tableView dequeueReusableCellWithIdentifier:@"reminder"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Reminder %ld", indexPath.row];
     return cell;
 }
 
@@ -82,35 +81,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AddReminderViewController *reminder = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddReminderViewController class])];
+    [self.navigationController pushViewController:reminder animated:YES];
+    // Assign date and time to the notification setting and have the correct boxes checked.
+}
+
 #pragma mark - Navigation
+-(void)editSegueProgrammatically {
+    AddTaskViewController *edit = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddTaskViewController class])];
+    edit.editTask = self.task;
+    edit.textField.text = self.task.name;
+    [self.navigationController pushViewController:edit animated:YES];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //         get correct object and update it
-    if ([segue.identifier isEqualToString:@"edit"]) {
-        AddTaskViewController *edit = segue.destinationViewController;
-        edit.editTask = self.task;
-        edit.textField.text = self.task.name;
-    } else if ([segue.identifier isEqualToString:@"addReminder"]){
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([segue.identifier isEqualToString:@"addReminder"]){
         AddReminderViewController *reminder = segue.destinationViewController;
         reminder.task = self.task;
-        if (indexPath.section == 0) {
-            reminder.theDay = @"Sunday";
-        } else if (indexPath.section == 1) {
-            reminder.theDay = @"Monday";
-        } else if (indexPath.section == 2) {
-            reminder.theDay = @"Tuesday";
-        } else if (indexPath.section == 3) {
-            reminder.theDay = @"Wednesday";
-        } else if (indexPath.section == 4) {
-            reminder.theDay = @"Thursday";
-        } else if (indexPath.section == 5) {
-            reminder.theDay = @"Friday";
-        } else if (indexPath.section == 6) {
-            reminder.theDay = @"Saturday";
-        }
-
-        reminder.theDay = [NSString stringWithFormat:@"%@s only", reminder.theDay];
-        
     }
 }
 
