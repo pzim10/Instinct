@@ -1,20 +1,23 @@
 //
-//  Reminders.h
+//  Reminder.h
 //  Instinct
 //
-//  Created by Peter Zimmerman on 8/18/15.
+//  Created by Peter Zimmerman on 8/20/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Reminder : NSObject
+@class Task;
 
-@property (nonatomic, assign) NSNumber *dayIndex;
-// 0 == task days, 1-7 == Su,M,Tu,W,Th,F,Sa
-@property (nonatomic, strong) NSString *theDay;
-// Either Monday, Tue, etc.
-@property (nonatomic, assign) int seconds;
-// Time in seconds the alarm is set at
+@interface Reminder : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * dayIndex;
+@property (nonatomic, retain) NSNumber * seconds;
+@property (nonatomic, retain) NSString * theDay;
+@property (nonatomic, retain) NSDate * fireTime;
+@property (nonatomic, retain) NSString * userInfo;
+@property (nonatomic, retain) Task *task;
 
 @end

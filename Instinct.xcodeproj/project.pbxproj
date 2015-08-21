@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28103F661B8689CA0008160E /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 28103F651B8689CA0008160E /* Goal.m */; };
+		28103F6C1B8689CB0008160E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 28103F6B1B8689CB0008160E /* Task.m */; };
+		28103F6F1B868D7E0008160E /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 28103F6E1B868D7E0008160E /* Reminder.m */; };
 		283D9FA61B768BFD00CCE9AF /* AddGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FA51B768BFD00CCE9AF /* AddGoalViewController.m */; };
 		283D9FA91B768D0B00CCE9AF /* GoalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FA81B768D0B00CCE9AF /* GoalDetailViewController.m */; };
 		283D9FAF1B795F0700CCE9AF /* TableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FAE1B795F0700CCE9AF /* TableViewData.m */; };
 		283D9FB21B7963F400CCE9AF /* GoalIdeasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FB11B7963F400CCE9AF /* GoalIdeasViewController.m */; };
 		283D9FB51B79641C00CCE9AF /* GoalIdeas2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 283D9FB41B79641C00CCE9AF /* GoalIdeas2VC.m */; };
-		285496331B75482500AFE16C /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496321B75482500AFE16C /* Goal.m */; };
-		285496361B75482600AFE16C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496351B75482600AFE16C /* Task.m */; };
 		289A62761B827B8100B6C89D /* Quotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62751B827B8100B6C89D /* Quotes.m */; };
 		289A62791B8299F900B6C89D /* TaskReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62781B8299F900B6C89D /* TaskReminderViewController.m */; };
 		289A627E1B83CED500B6C89D /* ReminderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A627D1B83CED500B6C89D /* ReminderController.m */; };
 		289A62811B83D5F400B6C89D /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62801B83D5F400B6C89D /* AddReminderViewController.m */; };
-		289A62841B83DE7E00B6C89D /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62831B83DE7E00B6C89D /* Reminder.m */; };
 		289A62871B83EA4F00B6C89D /* FirstGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289A62861B83EA4F00B6C89D /* FirstGoalViewController.m */; };
 		28EB477C1B6C09C9005F9AD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477B1B6C09C9005F9AD2 /* main.m */; };
 		28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EB477E1B6C09C9005F9AD2 /* AppDelegate.m */; };
@@ -53,6 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28103F641B8689CA0008160E /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		28103F651B8689CA0008160E /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
+		28103F6A1B8689CB0008160E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		28103F6B1B8689CB0008160E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		28103F6D1B868D7E0008160E /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		28103F6E1B868D7E0008160E /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		283D9FA41B768BFD00CCE9AF /* AddGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGoalViewController.h; sourceTree = "<group>"; };
 		283D9FA51B768BFD00CCE9AF /* AddGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGoalViewController.m; sourceTree = "<group>"; };
 		283D9FA71B768D0B00CCE9AF /* GoalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalDetailViewController.h; sourceTree = "<group>"; };
@@ -63,10 +69,6 @@
 		283D9FB11B7963F400CCE9AF /* GoalIdeasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalIdeasViewController.m; sourceTree = "<group>"; };
 		283D9FB31B79641C00CCE9AF /* GoalIdeas2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalIdeas2VC.h; sourceTree = "<group>"; };
 		283D9FB41B79641C00CCE9AF /* GoalIdeas2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalIdeas2VC.m; sourceTree = "<group>"; };
-		285496311B75482500AFE16C /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
-		285496321B75482500AFE16C /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
-		285496341B75482600AFE16C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		285496351B75482600AFE16C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		289A62741B827B8100B6C89D /* Quotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quotes.h; sourceTree = "<group>"; };
 		289A62751B827B8100B6C89D /* Quotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quotes.m; sourceTree = "<group>"; };
 		289A62771B8299F900B6C89D /* TaskReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskReminderViewController.h; sourceTree = "<group>"; };
@@ -75,8 +77,6 @@
 		289A627D1B83CED500B6C89D /* ReminderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderController.m; sourceTree = "<group>"; };
 		289A627F1B83D5F400B6C89D /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
 		289A62801B83D5F400B6C89D /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
-		289A62821B83DE7E00B6C89D /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
-		289A62831B83DE7E00B6C89D /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		289A62851B83EA4F00B6C89D /* FirstGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstGoalViewController.h; sourceTree = "<group>"; };
 		289A62861B83EA4F00B6C89D /* FirstGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGoalViewController.m; sourceTree = "<group>"; };
 		28EB47761B6C09C9005F9AD2 /* Instinct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instinct.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,12 +251,12 @@
 		28EB47B71B6C4664005F9AD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				289A62821B83DE7E00B6C89D /* Reminder.h */,
-				289A62831B83DE7E00B6C89D /* Reminder.m */,
-				285496341B75482600AFE16C /* Task.h */,
-				285496351B75482600AFE16C /* Task.m */,
-				285496311B75482500AFE16C /* Goal.h */,
-				285496321B75482500AFE16C /* Goal.m */,
+				28103F6D1B868D7E0008160E /* Reminder.h */,
+				28103F6E1B868D7E0008160E /* Reminder.m */,
+				28103F6A1B8689CB0008160E /* Task.h */,
+				28103F6B1B8689CB0008160E /* Task.m */,
+				28103F641B8689CA0008160E /* Goal.h */,
+				28103F651B8689CA0008160E /* Goal.m */,
 				28EB47BB1B6C5A54005F9AD2 /* Today.h */,
 				28EB47BC1B6C5A54005F9AD2 /* Today.m */,
 				28EB47C41B6C5AD7005F9AD2 /* Summary.h */,
@@ -403,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				285496331B75482500AFE16C /* Goal.m in Sources */,
+				28103F6C1B8689CB0008160E /* Task.m in Sources */,
 				28EB47D81B6C5B5E005F9AD2 /* TodayViewController.m in Sources */,
 				28EB47C91B6C5B04005F9AD2 /* GoalController.m in Sources */,
 				28EB47A71B6C1579005F9AD2 /* AddTaskViewController.m in Sources */,
@@ -411,8 +411,7 @@
 				283D9FB51B79641C00CCE9AF /* GoalIdeas2VC.m in Sources */,
 				283D9FA61B768BFD00CCE9AF /* AddGoalViewController.m in Sources */,
 				28EB47DB1B6C5B65005F9AD2 /* SummaryViewController.m in Sources */,
-				285496361B75482600AFE16C /* Task.m in Sources */,
-				289A62841B83DE7E00B6C89D /* Reminder.m in Sources */,
+				28103F661B8689CA0008160E /* Goal.m in Sources */,
 				28EB477F1B6C09C9005F9AD2 /* AppDelegate.m in Sources */,
 				28F96E371B721363009CF483 /* Stack.m in Sources */,
 				283D9FA91B768D0B00CCE9AF /* GoalDetailViewController.m in Sources */,
@@ -431,6 +430,7 @@
 				28EB47CC1B6C5B17005F9AD2 /* TodayController.m in Sources */,
 				289A627E1B83CED500B6C89D /* ReminderController.m in Sources */,
 				289A62761B827B8100B6C89D /* Quotes.m in Sources */,
+				28103F6F1B868D7E0008160E /* Reminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

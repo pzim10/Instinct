@@ -2,12 +2,13 @@
 //  Task.m
 //  Instinct
 //
-//  Created by Peter Zimmerman on 8/15/15.
+//  Created by Peter Zimmerman on 8/20/15.
 //  Copyright (c) 2015 Peter Zimmerman. All rights reserved.
 //
 
 #import "Task.h"
 #import "Goal.h"
+#import "Reminder.h"
 
 
 @implementation Task
@@ -17,6 +18,7 @@
 @dynamic consecutiveDaysCompleted;
 @dynamic daysCompleted;
 @dynamic daysUntilComplete;
+@dynamic deadline;
 @dynamic friday;
 @dynamic goalName;
 @dynamic monday;
@@ -26,7 +28,7 @@
 @dynamic thursday;
 @dynamic tuesday;
 @dynamic wednesday;
-@dynamic deadline;
 @dynamic goal;
+@dynamic reminders;
 
 @end

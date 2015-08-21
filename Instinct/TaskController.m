@@ -8,6 +8,7 @@
 
 #import "TaskController.h"
 #import "GoalController.h"
+#import "ReminderController.h"
 
 @implementation TaskController
 
@@ -109,6 +110,9 @@
 // Delete
 
 + (void)removeTask:(Task *)task {
+    for (Reminder *reminder in task.reminders) {
+        [ReminderController removeReminder:reminder];
+    }
     [task.managedObjectContext deleteObject:task];
 }
 

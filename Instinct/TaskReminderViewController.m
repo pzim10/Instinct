@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addReminder;
 @property (strong, nonatomic) UIBarButtonItem *editTask;
+@property (strong, nonatomic) NSMutableArray *days;
 
 @end
 
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -27,15 +29,77 @@
     self.navigationItem.rightBarButtonItems = @[self.addReminder, self.editTask];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:@"reminder"];
-    cell.textLabel.text = [NSString stringWithFormat:@"Reminder %ld", indexPath.row];
+    self.days = [NSMutableArray new];
+    
+    for (Reminder *reminder in [ReminderController reminders]) {
+        if ([reminder.theDay isEqualToString:@"Sunday"] && indexPath.section == 0 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Monday"] && indexPath.section == 1 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Tuesday"] && indexPath.section == 2 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Wednesday"] && indexPath.section == 3 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Thursday"] && indexPath.section == 4 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Friday"] && indexPath.section == 5 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        } else if ([reminder.theDay isEqualToString:@"Saturday"] && indexPath.section == 6 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            [self.days addObject:reminder.fireTime];
+        }
+    }
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.days[indexPath.row]];
+    
+    
+    NSDate *today = self.days[indexPath.row];
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                              initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components =
+    [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:today];
+    NSString *amPM = @"am";
+    NSInteger hour = [components hour];
+    if (hour > 12) {
+        hour -= 12;
+        amPM = @"pm";
+    }
+    NSInteger minute = [components minute];
+    NSString *single = @"";
+    if (minute < 10) {
+        single = @"0";
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld:%@%ld%@", (long)hour, single, (long)minute, amPM];
+    
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    int i = 0;
+    
+    for (Reminder *reminder in [ReminderController reminders]) {
+        if ([reminder.theDay isEqualToString:@"Sunday"] && section == 0 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Monday"] && section == 1 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Tuesday"] && section == 2 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Wednesday"] && section == 3 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Thursday"] && section == 4 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Friday"] && section == 5 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        } else if ([reminder.theDay isEqualToString:@"Saturday"] && section == 6 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
+            i++;
+        }
+    }
+    return i;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 7;
@@ -62,6 +126,7 @@
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Confirm deletion
+        
 //        [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
     }];
     return @[action];
@@ -83,6 +148,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AddReminderViewController *reminder = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([AddReminderViewController class])];
+    reminder.task = self.task;
     [self.navigationController pushViewController:reminder animated:YES];
     // Assign date and time to the notification setting and have the correct boxes checked.
 }

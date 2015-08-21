@@ -12,6 +12,5 @@
 @interface AddReminderViewController : UIViewController
 
 @property (nonatomic, strong) Task *task;
-@property (nonatomic, strong) NSString *theDay;
 
 @end

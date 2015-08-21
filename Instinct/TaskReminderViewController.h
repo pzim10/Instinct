@@ -10,6 +10,7 @@
 #import "GoalController.h"
 #import "AddTaskViewController.h"
 #import "TaskController.h"
+#import "ReminderController.h"
 
 @interface TaskReminderViewController : UIViewController
 
