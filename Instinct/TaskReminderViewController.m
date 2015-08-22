@@ -40,25 +40,25 @@
     
     for (Reminder *reminder in [ReminderController reminders]) {
         if ([reminder.theDay isEqualToString:@"Sunday"] && indexPath.section == 0 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Monday"] && indexPath.section == 1 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Tuesday"] && indexPath.section == 2 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Wednesday"] && indexPath.section == 3 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Thursday"] && indexPath.section == 4 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Friday"] && indexPath.section == 5 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         } else if ([reminder.theDay isEqualToString:@"Saturday"] && indexPath.section == 6 && [reminder.task.name isEqualToString:self.navigationItem.title]) {
-            [self.days addObject:reminder.fireTime];
+            [self.days addObject:reminder];
         }
     }
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.days[indexPath.row]];
     
-    
-    NSDate *today = self.days[indexPath.row];
+    Reminder *reminder = self.days[indexPath.row];
+    NSDate *today = reminder.fireTime;
     NSCalendar *gregorian = [[NSCalendar alloc]
                               initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components =
@@ -75,7 +75,7 @@
         single = @"0";
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%ld:%@%ld%@", (long)hour, single, (long)minute, amPM];
-    
+    cell.tag = [reminder.userInfo integerValue];
     return cell;
 }
 
@@ -126,8 +126,20 @@
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Confirm deletion
-        
-//        [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+        for (Reminder *reminder in [ReminderController reminders]) {
+            if (reminder.task == self.task) {
+                for (UILocalNotification *local in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+                    if ([local.userInfo[@"UserInfoKey"] isEqualToString:reminder.userInfo]) {
+                        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                        if (cell.tag ==[reminder.userInfo integerValue]){
+                            [[UIApplication sharedApplication] cancelLocalNotification:local];
+                            [ReminderController removeReminder:reminder];
+                        }
+                    }
+                }
+            }
+        }
+        [tableView reloadData];
     }];
     return @[action];
 }
@@ -137,7 +149,6 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] -1){return NO;};
     return YES;
 }
 

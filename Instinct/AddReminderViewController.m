@@ -12,7 +12,7 @@
 
 static CGFloat oneDayInterval = 86400;
 static CGFloat weekInterval = 604800;
-static NSString const *notificationUserInfoKey = @"UserInfoKey";
+
 
 @interface AddReminderViewController ()
 
@@ -54,6 +54,18 @@ static NSString const *notificationUserInfoKey = @"UserInfoKey";
 
 
 - (IBAction)saveTapped:(id)sender {
+    
+//    NSDate *alertTime = [[NSDate date] dateByAddingTimeInterval:10];
+//    UILocalNotification *localNotification = [UILocalNotification new];
+//    localNotification.fireDate = alertTime;
+//    localNotification.alertBody = @"Alert body";
+//    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//    localNotification.applicationIconBadgeNumber = 1;
+//    localNotification.repeatInterval = 0;
+//    NSLog(@"%@", localNotification.fireDate);
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//    NSLog(@"%lu", (unsigned long)[[UIApplication sharedApplication] scheduledLocalNotifications].count);
+    
     UILocalNotification *localNotification = [UILocalNotification new];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.soundName = UILocalNotificationDefaultSoundName;
@@ -100,7 +112,9 @@ static NSString const *notificationUserInfoKey = @"UserInfoKey";
                     count = (int)[UIApplication sharedApplication].scheduledLocalNotifications.count;
                     localNotification.userInfo = @{notificationUserInfoKey : [NSString stringWithFormat:@"%d", count]};
                     
-                    [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
+                    NSLog(@"%@",localNotification.userInfo);
+                    
+//                    [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
                     [[UIApplication sharedApplication]scheduleLocalNotification:localNotification];
                     
                     NSDateFormatter *todayFormat = [NSDateFormatter new];
@@ -132,7 +146,7 @@ static NSString const *notificationUserInfoKey = @"UserInfoKey";
         
         [ReminderController createReminderWithDay:[todayFormat stringFromDate:begin] userInfo:localNotification.userInfo[notificationUserInfoKey] fireTime:localNotification.fireDate andTask:self.task];
     }
-    
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 

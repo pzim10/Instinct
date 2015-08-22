@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TaskController.h"
 
+static NSString const *notificationUserInfoKey = @"UserInfoKey";
+
 @interface AddReminderViewController : UIViewController
 
 @property (nonatomic, strong) Task *task;

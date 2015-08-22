@@ -46,6 +46,10 @@
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification {
 //    NSString *itemName = [notif.userInfo objectForKey:ToDoItemKey];
 //    [viewController displayItem:itemName];  // custom method
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You have recieved an alert" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
+    
+    [alert show];
+    
     app.applicationIconBadgeNumber += 1;
 }
 

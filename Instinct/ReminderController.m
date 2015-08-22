@@ -14,6 +14,7 @@
 +(Reminder *)createReminderWithDay: (NSString *)theDay userInfo:(NSString *)userInfo fireTime:(NSDate *)fireTime andTask:(Task *)task{
     Reminder *reminder = [NSEntityDescription insertNewObjectForEntityForName:@"Reminder" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     reminder.theDay = theDay;
+    reminder.userInfo = userInfo;
 //    reminder.seconds = seconds;
     reminder.fireTime = fireTime;
     reminder.task = task;
